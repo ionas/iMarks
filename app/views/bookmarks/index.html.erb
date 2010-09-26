@@ -1,23 +1,51 @@
-<h1>Listing bookmarks</h1>
 
 <table>
-  <tr>
-    <th>Url</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @bookmarks.each do |bookmark| %>
-  <tr>
-    <td><%= bookmark.url %></td>
-    <td><%= link_to 'Show', bookmark %></td>
-    <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
-    <td><%= link_to 'Destroy', bookmark, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+	<caption class="paginator">
+		<% form_tag request.path, :method => 'get' do %>
+		  <% content_tag :label do %>
+			<nobr>
+		    	<u>Search:</u> <u>by URL</u>
+		    	<%= text_field_tag :search_by_url, params[:search_by_url] %>
+			</nobr>
+		  <% end %>
+		<% end %>
+		<nobr>
+			<u>Page:</u>
+			<%-
+			# http://www.tricksonrails.com/2010/04/rails3-and-will_paginate-doing-easy-remote-links-rails3-tricks-02/ =end
+			-%>
+			<%= will_paginate @bookmarks, :javascript => "('.pagination a').attr('data-remote', 'true')" %>
+		</nobr>
+	</caption>
+	<tr>
+		<th>URL</th>
+		<th>Tags</th>
+		<th>Date</th>
+		<th>Actions</th>
+	</tr>
+	<%- @bookmarks.each do |bookmark| -%>
+	<tr>
+		<td><a href="<%= bookmark.url %>"><%= bookmark.url %></a></td>
+		<td style="width: 22em">
+		<%- unless bookmark.tags.empty? -%>
+		<ul>
+			<%- bookmark.tags.each do |tag| -%>
+			<li><a href="?utf8=✓&amp;search_by_tags=<%= tag.name %>"><%= tag.name %></a></li>
+			<%- end -%>
+		</ul>
+		<%- end -%>
+	</td>
+		<td style="width: 15em"><%= bookmark.updated_at %></td>
+		<td class="actions" style="width: 11em">
+			<%= link_to 'Show', bookmark %>
+			<%= link_to 'Edit', edit_bookmark_path(bookmark) %>
+			<%= button_to 'Remove', bookmark, :confirm => 'Are you sure?', :method => :delete %>
+		</td>
+	</tr>
+	<%- end -%>
 </table>
-
-<br />
-
+<br>
 <%= link_to 'New Bookmark', new_bookmark_path %>
+
+<hr />
+-- TODO: WEIGHTED TAG CLOUD HERE --

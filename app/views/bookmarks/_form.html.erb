@@ -12,8 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :url %><br />
+    <div style="text-transform: uppercase"><%= f.label :url %></div>
     <%= f.text_field :url %>
+  </div>
+  <div class="field">
+    <%= f.label :tag_names %><br>
+    <%= f.text_field :tag_names %>
   </div>
   <div class="actions">
     <%= f.submit %>

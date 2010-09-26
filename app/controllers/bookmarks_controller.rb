@@ -1,15 +1,18 @@
 class BookmarksController < ApplicationController
+  
+  before_filter :authenticate # Also Add 1. Data Encryption by Public/Private Key 2. SSL?
+  
   # GET /bookmarks
   # GET /bookmarks.xml
   def index
-    @bookmarks = Bookmark.all
-
+    @bookmarks = Bookmark.search(params[:search_by_url], params[:search_by_tags], params[:page], 2)
+    # @bookmarks = Bookmark.paginate :page => params[:page], :order => 'created_at DESC'
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @bookmarks }
     end
   end
-
+  
   # GET /bookmarks/1
   # GET /bookmarks/1.xml
   def show
@@ -80,4 +83,14 @@ class BookmarksController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  protected 
+  
+  # Thanks to: http://railscasts.com/episodes/82-http-basic-authentication
+  def authenticate
+    authenticate_or_request_with_http_basic do |username, password|
+      username == 'joe' && password = 'enter'
+    end
+  end
+  
 end

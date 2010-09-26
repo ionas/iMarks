@@ -1,0 +1,8 @@
+textarea, input {
+	font-family:  'Consolas', 'Monaco', 'Lucida Console', 'Andale Mono', monospace;
+	font-size: 10pt;
+}
+textarea {
+	height: 15em;
+	width: 40em;
+}
