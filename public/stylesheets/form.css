@@ -1,4 +1,4 @@
-textarea, input {
+textarea, input[type="text"] {
 	font-family:  'Consolas', 'Monaco', 'Lucida Console', 'Andale Mono', monospace;
 	font-size: 10pt;
 }

@@ -1,7 +1,7 @@
 class Bookmark < ActiveRecord::Base
   # Thanks go to: http://railscasts.com/episodes/167-more-on-virtual-attributes
   has_many :taggings, :dependent => :destroy
-  has_many :tags, :through => :taggings, :order => :name
+  has_many :tags, :through => :taggings #, :order => :name
 
   attr_writer :tag_names
 

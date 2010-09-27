@@ -10,7 +10,7 @@ table, th, td, tr {
 }
 th, td {
 	border: 1pt solid #ccc;
-	padding: 2pt 3pt;
+	padding: 4pt 5pt;
 }
 td {
 	background: rgba(0, 0, 0, 0.02);
@@ -39,7 +39,7 @@ th:empty {
 }
 table .actions {
 	text-align: center;
-	font-size: 150%;
+	font-size: 130%;
 	line-height: 110%;
 	vertical-align: top;
 	padding: 4pt 2pt;
@@ -50,6 +50,7 @@ table .actions * {
 }
 table .actions a {
 	text-decoration: none;
+	padding: 1pt 2pt;
 }
 table .actions a:visited {
 	color: inherit;
