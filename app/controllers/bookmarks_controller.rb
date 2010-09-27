@@ -2,10 +2,14 @@ class BookmarksController < ApplicationController
   
   before_filter :authenticate # Also Add 1. Data Encryption by Public/Private Key 2. SSL?
   
+  # Thanks to: http://railscasts.com/episodes/228-sortable-table-columns
+  helper_method :sort_column, :sort_direction
+  
   # GET /bookmarks
   # GET /bookmarks.xml
   def index
-    @bookmarks = Bookmark.search(params[:search_by_url], params[:search_by_tags], params[:page], 2)
+    @bookmarks = Bookmark.search(params[:search_by_url], params[:search_by_tags],
+      params[:page], sort_column, sort_direction, 3)
     # @bookmarks = Bookmark.paginate :page => params[:page], :order => 'created_at DESC'
     respond_to do |format|
       format.html # index.html.erb
@@ -89,8 +93,19 @@ class BookmarksController < ApplicationController
   # Thanks to: http://railscasts.com/episodes/82-http-basic-authentication
   def authenticate
     authenticate_or_request_with_http_basic do |username, password|
-      username == 'joe' && password = 'enter'
+      username == 'joe' && password = 'put'
     end
+  end
+  
+  private
+  
+  def sort_column
+    # Does not work with tag_names
+    Bookmark.column_names.include?(params[:sort_by]) ? params[:sort_by] : 'updated_at'
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:sort_direction]) ? params[:sort_direction] : 'desc'
   end
   
 end

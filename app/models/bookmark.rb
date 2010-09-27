@@ -13,7 +13,8 @@ class Bookmark < ActiveRecord::Base
   validates_uniqueness_of :url
   
   # gem will_paginate
-  # Thanks to: http://wiki.github.com/mislav/will_paginate/
+  # Thanks to:
+  # => http://wiki.github.com/mislav/will_paginate/
   # => http://github.com/mislav/will_paginate/wiki
   # => http://gitrdoc.com/mislav/will_paginate/tree/master
   # => http://thewebfellas.com/blog/2010/8/22/revisited-roll-your-own-pagination-links-with-will_paginate-and-rails-3
@@ -25,19 +26,21 @@ class Bookmark < ActiveRecord::Base
   # => http://railscasts.com/episodes/37-simple-search-form
   # => http://wiki.github.com/mislav/will_paginate/ajax-pagination
   cattr_reader :per_page
-  @@per_page = 10 # default items per page
+  @@per_page = 5 # default items per page
    
   def tag_names
     @tag_names || tags.collect(&:name).join(', ')
   end
   
-  def self.search(search_by_url, search_by_tags, page, per_page)
+  def self.search(search_by_url, search_by_tags, page, order_by, order_direction, per_page = nil)
+    per_page || @@per_page
     # Treat spaces and commas and semicolons as wildcards
     search_by_url = search_by_url.gsub(' ', '%').gsub(',', '%').gsub(';', '%') unless search_by_url == nil
+    
     paginate :per_page => per_page, :page => page,
-             :conditions => ['url LIKE ? ', "%#{search_by_url}%"]
-             # , :conditions => ['url LIKE ? AND tag_names LIKE ?', "%#{search_by_url}%", "%#{search_by_tags}%"]
-             # , :order => 'url'
+             :conditions => ['url LIKE ? ', "%#{search_by_url}%"],
+             # :conditions => ['url LIKE ? AND tag_names LIKE ?', "%#{search_by_url}%", "%#{search_by_tags}%"],
+             :order => order_by + ' ' + order_direction
   end
   
   private
