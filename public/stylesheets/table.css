@@ -6,19 +6,18 @@ table, th, td, tr {
 	vertical-align: top;
 }
 table, th, td {
-	border: 1pt solid silver;
+	border: 1pt solid #ccc;
 	border-collapse: collapse;
 	padding: 2pt 3pt;
 }
 td {
 	background: rgba(0, 0, 0, 0.02);
+	border-color: #ddd;
 }
 th {
 	font-weight: bold;
-	background: rgba(0, 0, 0, 0.1);
-}
-th {
-	border-bottom-width: 3pt;
+	background: rgba(0, 0, 0, 0.07);
+	border-bottom-width: 2pt;
 }
 table {
 	width: 100%;

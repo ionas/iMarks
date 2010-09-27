@@ -95,6 +95,12 @@ table th a {
 	padding-left: 4pt;
 	text-decoration: none;
 }
+table th a:hover,
+table th a.sort_current:hover {
+	color: white;
+	background: rgba(0, 0, 0, 0.8);
+	cursor: pointer;
+}
 table th a.sort_current {
 	background: #dadada;
 	color: black;
