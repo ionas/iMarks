@@ -21,7 +21,7 @@
 		<th><%= sortable 'url', 'URL' %></th>
 		<th><%= sortable 'tag_names', 'Tags' %></th>
 		<th><%= sortable 'updated_at', 'Date' %></th>
-		<th>Actions</th>
+		<th></th>
 	</tr>
 	<%- @bookmarks.each do |bookmark| -%>
 	<tr>
@@ -37,9 +37,9 @@
 		</td>
 		<td style="width: 11em"><%= bookmark.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
 		<td class="actions" style="width: 11em">
-			<%= link_to 'Show', bookmark %>
-			<%= link_to 'Edit', edit_bookmark_path(bookmark) %>
-			<%= button_to 'Remove', bookmark, :confirm => 'Are you sure?', :method => :delete %>
+			<%= link_to raw('&#x2614'), bookmark %>
+			<%= link_to raw('&#x270e;'), edit_bookmark_path(bookmark) %>
+			<%= button_to 'X', bookmark, :confirm => 'Are you sure?', :method => :delete %>
 		</td>
 	</tr>
 	<%- end -%>

@@ -79,29 +79,94 @@
 .sort_current.sort_desc:after {
 	float: right;
 	font-family: monospace;
+	padding-top: .5pt;
 }
 /* http://www.evotech.net/articles/testjsentities.html */
-/* http://www.w3schools.com/tags/ref_symbols.asp */
+/* http://www.fileformat.info/info/unicode/char/25b2/fontsupport.htm */
+/* http://www.fileformat.info/info/unicode/char/search.htm */
 .sort_current.sort_asc:after {
-	content: '\2193';
+	content: '\25BC';
 }
 .sort_current.sort_desc:after {
-	content: '\2191';
+	content: '\25B2';
 }
-table th a {
+th {
+	font-family: 'Trebuchet MS', sans-serif;
+	text-shadow: white 0 1px 1px;
+}
+th a {
 	display: block;
 	margin: -2pt -3pt;
 	padding: 2pt 3pt;
 	padding-left: 4pt;
 	text-decoration: none;
+	text-shadow: white 0 1px 1px;
+	
+	background: #f6f6f6;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.43, rgb(230,230,230)),
+	    color-stop(0.71, rgb(255,255,255)),
+	    color-stop(0.86, rgb(245,245,245))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(230,230,230) 43%,
+	    rgb(255,255,255) 71%,
+	    rgb(245,245,245) 86%
+	);
+	box-shadow: 0px 1px 1px #ddd;
+	-webkit-box-shadow: 0px 1px 1px #ddd;
+	-moz-box-shadow: 0px 1px 1px #ddd;
 }
 table th a:hover,
 table th a.sort_current:hover {
-	color: white;
-	background: rgba(0, 0, 0, 0.8);
-	cursor: pointer;
-}
-table th a.sort_current {
-	background: #dadada;
+	background: #eaeaea;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.43, rgb(214,214,214)),
+	    color-stop(0.71, rgb(245,245,245)),
+	    color-stop(0.83, rgb(240,240,240))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(214,214,214) 43%,
+	    rgb(245,245,245) 71%,
+	    rgb(240,240,240) 83%
+	);
 	color: black;
+	box-shadow: 0px 0px 1px #ddd;
+	-webkit-box-shadow: 0px 0px 1px #ddd;
+	-moz-box-shadow: 0px 0px 1px #ddd;
+}
+th a.sort_current {
+	background: #eaeaea;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.43, rgb(214,214,214)),
+	    color-stop(0.71, rgb(245,245,245)),
+	    color-stop(0.83, rgb(240,240,240))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(214,214,214) 43%,
+	    rgb(245,245,245) 71%,
+	    rgb(240,240,240) 83%
+	);
+	color: black;
+	box-shadow: 0px 0px 1px #ddd;
+	-webkit-box-shadow: 0px 0px 1px #ddd;
+	-moz-box-shadow: 0px 0px 1px #ddd;
+}
+th a,
+th a:hover,
+th a.sort_current:hover,
+th a.sort_current {
+	cursor: pointer;
 }

@@ -1,3 +1,6 @@
+table {
+	border-collapse: collapse;
+}
 table, th, td, tr {
 	margin: 0;
 	padding: 0;
@@ -5,9 +8,8 @@ table, th, td, tr {
 	text-align: left;
 	vertical-align: top;
 }
-table, th, td {
+th, td {
 	border: 1pt solid #ccc;
-	border-collapse: collapse;
 	padding: 2pt 3pt;
 }
 td {
@@ -28,21 +30,33 @@ table {
 table table {
 	box-shadow: none;
 }
-table th {
+th {
 	empty-cells: hide;
 }
-table th:empty {
+th:empty {
 	background: none;
 	border: 0;
 }
-
 table .actions {
 	text-align: center;
+	font-size: 150%;
+	line-height: 110%;
 	vertical-align: top;
-	
+	padding: 4pt 2pt;
 }
 table .actions * {
 	display: inline-block;
+	vertical-align: bottom;
+}
+table .actions a {
+	text-decoration: none;
+}
+table .actions a:visited {
+	color: inherit;
+}
+table .actions form input {
+	color: red;
+	font-weight: bold;
 }
 table ul {
 	margin: 0;

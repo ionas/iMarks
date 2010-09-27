@@ -36,6 +36,8 @@ class Bookmark < ActiveRecord::Base
     per_page || @@per_page
     # Treat spaces and commas and semicolons as wildcards
     search_by_url = search_by_url.gsub(' ', '%').gsub(',', '%').gsub(';', '%') unless search_by_url == nil
+    # Better: LIKE %PART1% OR %PART2%, Better yet: weighted?!
+    # SearchLogic?
     
     paginate :per_page => per_page, :page => page,
              :conditions => ['url LIKE ? ', "%#{search_by_url}%"],
