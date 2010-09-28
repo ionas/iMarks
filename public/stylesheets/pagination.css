@@ -1,3 +1,17 @@
+.paginator input[type="text"] {
+	box-shadow: 0px 1px 3px #ccc;
+	-webkit-box-shadow: 0px -1px 3px #ccc;
+	-moz-box-shadow: 0px -1px 3px #ccc;
+	border: 3pt solid silver;
+	border-radius: 3pt;
+	-webkit-border-radius: 3pt;
+	-moz-border-radius: 3pt;
+
+}
+.paginator {
+	min-height: 2.5em;
+	text-align: center;
+}
 .paginator * {
 	display: inline-block;
 	text-decoration: none;
@@ -75,30 +89,46 @@
 	width: 6em;
 }
 
-.sort_current.sort_asc:after,
-.sort_current.sort_desc:after {
-	float: right;
-	font-family: monospace;
-	padding-top: .5pt;
-}
 /* http://www.evotech.net/articles/testjsentities.html */
 /* http://www.fileformat.info/info/unicode/char/25b2/fontsupport.htm */
 /* http://www.fileformat.info/info/unicode/char/search.htm */
+.sort_current.sort_asc:after,
+.sort_current.sort_desc:after {
+	font-family: monospace;
+	padding-left: .2em;
+	float: right;
+	opacity: .67;
+}
 .sort_current.sort_asc:after {
 	content: '\25BC';
 }
 .sort_current.sort_desc:after {
 	content: '\25B2';
 }
-th {
+.paginate_sorting {
 	font-family: 'Trebuchet MS', sans-serif;
 	text-shadow: white 0 1px 1px;
+	text-align: center;
 }
-th a {
+.paginate_sorting,
+.paginate_sorting li {
+	margin: 0;
+	padding: 0;
+}
+.paginate_sorting li {
+	display: inline-block;
+	height: 2.3em;
+}
+.paginate_sorting a {
+	height: 1.2em;
 	display: block;
-	margin: -4pt -5pt;
-	padding: 4pt 5pt;
-	padding-left: 4pt;
+	border: 1pt solid #ccc;
+	border-radius: 3pt;
+	-webkit-border-radius: 3pt;
+	-moz-border-radius: 3pt;
+	padding: 2pt 4pt 3pt 4pt;
+	border: 1pt solid silver;
+	margin-bottom: 1pt;
 	text-decoration: none;
 	text-shadow: white 0 1px 1px;
 	
@@ -121,8 +151,8 @@ th a {
 	-webkit-box-shadow: 0px 1px 1px #ddd;
 	-moz-box-shadow: 0px 1px 1px #ddd;
 }
-table th a:hover,
-table th a.sort_current:hover {
+.paginate_sorting a:hover,
+.paginate_sorting a.sort_current:hover {
 	background: #eaeaea;
 	background: -webkit-gradient(
 	    linear,
@@ -143,7 +173,7 @@ table th a.sort_current:hover {
 	-webkit-box-shadow: 0px 0px 1px #ddd;
 	-moz-box-shadow: 0px 0px 1px #ddd;
 }
-th a.sort_current {
+.paginate_sorting a.sort_current {
 	background: #eaeaea;
 	background: -webkit-gradient(
 	    linear,
@@ -164,9 +194,9 @@ th a.sort_current {
 	-webkit-box-shadow: 0px 0px 1px #ddd;
 	-moz-box-shadow: 0px 0px 1px #ddd;
 }
-th a,
-th a:hover,
-th a.sort_current:hover,
-th a.sort_current {
+.paginate_sorting a,
+.paginate_sorting a:hover,
+.paginate_sorting a.sort_current:hover,
+.paginate_sorting a.sort_current {
 	cursor: pointer;
 }

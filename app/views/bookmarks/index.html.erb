@@ -1,50 +1,36 @@
-
 <table>
-	<caption class="paginator">
+	<section class="paginator">
 		<% form_tag request.path, :method => 'get' do %>
-		  <% content_tag :label do %>
-			<nobr>
-		    	<u>Search:</u> <u>by URL</u>
-		    	<%= text_field_tag :search_by_url, params[:search_by_url] %>
-			</nobr>
-		  <% end %>
+		 <% content_tag :label do %>
+	    <%= text_field_tag :search, params[:search] %>
+		 <% end %>
+		<br>
 		<% end %>
-		<nobr>
-			<u>Page:</u>
-			<%-
-			# http://www.tricksonrails.com/2010/04/rails3-and-will_paginate-doing-easy-remote-links-rails3-tricks-02/ =end
-			-%>
-			<%= will_paginate @bookmarks, :javascript => "('.pagination a').attr('data-remote', 'true')" %>
-		</nobr>
-	</caption>
-	<tr>
-		<th><%= sortable 'url', 'URL' %></th>
-		<th><%= sortable 'tag_names', 'Tags' %></th>
-		<th><%= sortable 'updated_at', 'Date' %></th>
-		<th></th>
-	</tr>
-	<%- @bookmarks.each do |bookmark| -%>
-	<tr>
-		<td><a href="<%= bookmark.url %>"><%= bookmark.url %></a></td>
-		<td style="width: 33em">
-		<%- unless bookmark.tags.empty? -%>
-		<ul>
-			<%- bookmark.tags.each do |tag| -%>
-			<li><a href="?utf8=✓&amp;search_by_tags=<%= tag.name %>"><%= tag.name %></a></li>
-			<%- end -%>
-		</ul>
-		<%- end -%>
-		</td>
-		<td style="width: 11em"><%= bookmark.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
-		<td class="actions" style="width: 11em">
-			<%= link_to raw('&#x2614'), bookmark %>
-			<%= link_to raw('&#x270e;'), edit_bookmark_path(bookmark) %>
-			<%= button_to 'X', bookmark, :confirm => 'Are you sure?', :method => :delete %>
-		</td>
-	</tr>
+		<%= will_paginate @bookmarks %>
+		<!-- will_paginate @bookmarks, :javascript => "('.pagination a').attr('data-remote', 'true')" -->
+		<!-- will_paginate @bookmarks, :class => 'pagination ajax' -->
+		<!-- http://www.tricksonrails.com/2010/04/rails3-and-will_paginate-doing-easy-remote-links-rails3-tricks-02/ -->
+	</section>
+	<%- unless @bookmarks.empty? -%>
+	<ul class="paginate_sorting">
+		<li><%= sortable 'url', :label => 'URL' %></li>
+		<li><%= sortable 'tag_names', :label => 'Tags' %></li>
+		<li><%= sortable 'updated_at', :label => 'Date' %></li>
+	</ul>
+	<ul class="results">
+		<%= render @bookmarks %>
+	</ul>
+	<%- else -%>
+	<p>Your search - <strong><%= params[:search] %></strong> - did not match any links or taggings.</p>
+	<h3>Suggestions:</h3>
+	<ul>
+		<li>Make sure all words are spelled correctly.</li>
+		<li>Try different keywords.</li>
+		<li>Try more general keywords.</li>
+		<li>Try fewer keywords.</li>
+	</ul>
 	<%- end -%>
-</table>
 <br>
 <%= link_to 'New Bookmark', new_bookmark_path %>
 
--- TODO: WEIGHTED TAG CLOUD HERE --
+<%= render 'tag_cloud' %>

@@ -34,6 +34,7 @@ GEM
     columnize (0.3.1)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    hirb (0.3.4)
     i18n (0.4.1)
     linecache (0.43)
     mail (2.2.6.1)
@@ -77,6 +78,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  hirb
   rails (= 3.0.0)
   ruby-debug
   sqlite3-ruby

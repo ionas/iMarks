@@ -1,6 +1,23 @@
 textarea, input[type="text"] {
-	font-family:  'Consolas', 'Monaco', 'Lucida Console', 'Andale Mono', monospace;
-	font-size: 10pt;
+	font-family: 'Lucida Console', 'Andale Mono',  'Consolas', 'Monaco', monospace;
+	font-size: 11pt;
+	padding: 0 2pt;
+	line-height: 100%;
+	background: #aaa;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.18, rgb(255,255,255)),
+	    color-stop(0.94, rgb(242,242,242)),
+	    color-stop(0.95, rgb(232,232,232))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(255,255,255) 18%,
+	    rgb(242,242,242) 94%,
+	    rgb(232,232,232) 95%
+	);
 }
 textarea {
 	height: 15em;

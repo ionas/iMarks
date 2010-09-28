@@ -37,39 +37,20 @@ th:empty {
 	background: none;
 	border: 0;
 }
-table .actions {
-	text-align: center;
-	font-size: 130%;
-	line-height: 110%;
-	vertical-align: top;
-	padding: 4pt 2pt;
-}
-table .actions * {
-	display: inline-block;
-	vertical-align: bottom;
-}
-table .actions a {
-	text-decoration: none;
-	padding: 1pt 2pt;
-}
-table .actions a:visited {
-	color: inherit;
-}
-table .actions form input {
-	color: red;
-	font-weight: bold;
-}
 table ul {
 	margin: 0;
 	padding: 0;
 }
-table li {
+table ul li {
 	text-transform: capitalize;
 	display: inline;
 }
-table li:last-child:after {
+table ul li:last-child:after {
 	content: '';
 }
-table li:after {
+table ul li:after {
 	content: ',';
+}
+caption {
+	min-height: 2.5em;
 }

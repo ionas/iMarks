@@ -1,0 +1,17 @@
+<li class="bookmark <%= cycle('odd', 'even') %>">
+	<h1><a href="<%= bookmark.url %>"><%= bookmark.url %></a><br><small>on <%= bookmark.updated_at.strftime("%Y-%m-%d %H:%M") %></small></h1>
+	<ul class="actions">
+		<li><%= link_to raw('&#x2614'), bookmark %></li>
+		<li><%= link_to raw('&#x270e;'), edit_bookmark_path(bookmark) %></li>
+		<li><%= button_to 'X', bookmark, :confirm => 'Are you sure?', :method => :delete %></li>
+	</ul>
+	<br>
+	<%- unless bookmark.tags.empty? -%>
+	<!--<h2>Tags</h2>-->
+	<ul class="tags">
+		<%- bookmark.tags.each do |tag| -%>
+		<li><a href="?search=<%= tag.name %>"><%= tag.name %></a></li>
+		<%- end -%>
+	</ul>
+	<%- end -%>
+</li>

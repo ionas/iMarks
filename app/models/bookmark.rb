@@ -25,24 +25,25 @@ class Bookmark < ActiveRecord::Base
   # => http://railscasts.com/episodes/111-advanced-search-form
   # => http://railscasts.com/episodes/37-simple-search-form
   # => http://wiki.github.com/mislav/will_paginate/ajax-pagination
-  cattr_reader :per_page
-  @@per_page = 5 # default items per page
+  cattr_reader :per_page, :per_page_min, :per_page_max
+  @@per_page = 5
+  @@per_page_min = 3
+  @@per_page_max = 100
    
   def tag_names
     @tag_names || tags.collect(&:name).join(', ')
   end
   
-  def self.search(search_by_url, search_by_tags, page, order_by, order_direction, per_page = nil)
-    per_page || @@per_page
+  def self.search(search, page, order_by, order_direction, per_page)
     # Treat spaces and commas and semicolons as wildcards
-    search_by_url = search_by_url.gsub(' ', '%').gsub(',', '%').gsub(';', '%') unless search_by_url == nil
+    search = search.gsub(' ', '%').gsub(',', '%').gsub(';', '%') unless search == nil
     # Better: LIKE %PART1% OR %PART2%, Better yet: weighted?!
     # SearchLogic?
-    
     paginate :per_page => per_page, :page => page,
-             :conditions => ['url LIKE ? ', "%#{search_by_url}%"],
-             # :conditions => ['url LIKE ? AND tag_names LIKE ?', "%#{search_by_url}%", "%#{search_by_tags}%"],
-             :order => order_by + ' ' + order_direction
+             # :conditions => ['url LIKE?', "%#{search}%"],
+             :conditions => ['Bookmarks.url LIKE ? OR Tags.name LIKE ?', "%#{search}%", "%#{search}%"],
+             :order => 'Bookmarks.' + order_by + ' ' + order_direction,
+             :include => :tags
   end
   
   private
