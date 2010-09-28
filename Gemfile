@@ -31,5 +31,7 @@ gem 'ruby-debug'
 
 gem 'will_paginate', '~> 3.0.pre2'
 
+gem 'rails3-jquery-autocomplete'
+
 gem 'hirb' # http://rubygems.org/gems/hirb   http://asciicasts.com/episodes/176-searchlogic
 # Hirb::View.enable

@@ -16,8 +16,8 @@
     <%= f.text_field :url %>
   </div>
   <div class="field">
-    <%= f.label :tag_names %><br>
-    <%= f.text_field :tag_names %>
+    <div style="text-transform: capitalize"><%= f.label :tag_names %></div>
+    <%= f.text_field :tag_names, :style => 'text-transform: capitalize' %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -56,6 +56,7 @@ GEM
       activesupport (= 3.0.0)
       bundler (~> 1.0.0)
       railties (= 3.0.0)
+    rails3-jquery-autocomplete (0.3.5)
     railties (3.0.0)
       actionpack (= 3.0.0)
       activesupport (= 3.0.0)
@@ -80,6 +81,7 @@ PLATFORMS
 DEPENDENCIES
   hirb
   rails (= 3.0.0)
+  rails3-jquery-autocomplete
   ruby-debug
   sqlite3-ruby
   will_paginate (~> 3.0.pre2)

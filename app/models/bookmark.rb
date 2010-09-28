@@ -5,8 +5,8 @@ class Bookmark < ActiveRecord::Base
 
   attr_writer :tag_names
 
-  after_save :assign_tags
-  after_update :assign_tags
+  #after_save :assign_tags
+  #after_update :assign_tags
   
   # Validations
   validates_presence_of :url
@@ -34,11 +34,23 @@ class Bookmark < ActiveRecord::Base
     @tag_names || tags.collect(&:name).join(', ')
   end
   
+  def tag_names=(tag_names = nil)
+    if tag_names
+      self.tags = tag_names.split(/,+/).collect do |name|
+        Tag.find_or_create_by_name(name.strip)
+      end
+    end
+  end
+
+  
   def self.search(search, page, order_by, order_direction, per_page)
     # Treat spaces and commas and semicolons as wildcards
     search = search.gsub(' ', '%').gsub(',', '%').gsub(';', '%') unless search == nil
     # Better: LIKE %PART1% OR %PART2%, Better yet: weighted?!
-    # SearchLogic?
+    # SearchLogic: http://railscasts.com/episodes/176-searchlogic (not yet rails3)
+    # Thinking Sphinx: http://railscasts.com/episodes/120-thinking-sphinx (requires rake indexing)
+    # Xapian (like Lucene): http://blog.evanweaver.com/articles/2008/05/26/xapian-search-plugin/
+    # http://locomotivation.squeejee.com/post/109284085/mulling-over-our-ruby-on-rails-full-text-search-options
     paginate :per_page => per_page, :page => page,
              # :conditions => ['url LIKE?', "%#{search}%"],
              :conditions => ['Bookmarks.url LIKE ? OR Tags.name LIKE ?', "%#{search}%", "%#{search}%"],
@@ -47,13 +59,13 @@ class Bookmark < ActiveRecord::Base
   end
   
   private
-  
-  def assign_tags
-    if @tag_names
-      self.tags = @tag_names.split(/,+/).map do |name|
-        Tag.find_or_create_by_name(name.strip)
-      end
-    end
-  end
+
+#  def assign_tags
+#    if @tag_names
+#      self.tags = @tag_names.split(/,+/).collect do |name|
+#        Tag.find_or_create_by_name(name.strip)
+#      end
+#    end
+#  end
   
 end
