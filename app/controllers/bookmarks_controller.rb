@@ -109,7 +109,7 @@ class BookmarksController < ApplicationController
     def sort_column
       # Does not work with tag_names
       # Bookmark.column_names.include?(params[:sort_by]) ? params[:sort_by] : 'updated_at'
-      %w[url updated_at tag_names].include?(params[:sort_by]) ? params[:sort_by] : 'updated_at'
+      %w[url updated_at].include?(params[:sort_by]) ? params[:sort_by] : 'updated_at'
     end
 
     def sort_direction
