@@ -2,7 +2,11 @@
 
 <p>
   <b>URL:</b>
-  <%= @bookmark.url %>
+  <a href="<%= @bookmark.url %>"><%= @bookmark.url %></a>
+</p>
+<p>
+  <b>Tags:</b>
+  <span style="text-transform: capitalize"><%= @bookmark.tag_names %></span>
 </p>
 
 <%= link_to 'Edit', edit_bookmark_path(@bookmark) %> |

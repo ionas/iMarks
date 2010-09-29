@@ -5,7 +5,8 @@ gem 'rails', '3.0.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3-ruby', :require => 'sqlite3'
+# gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'mysql2'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -31,7 +32,8 @@ gem 'ruby-debug'
 
 gem 'will_paginate', '~> 3.0.pre2'
 
-gem 'rails3-jquery-autocomplete'
+# http://github.com/crowdint/rails3-jquery-autocomplete
+# gem 'rails3-jquery-autocomplete'
 
 gem 'hirb' # http://rubygems.org/gems/hirb   http://asciicasts.com/episodes/176-searchlogic
 # Hirb::View.enable

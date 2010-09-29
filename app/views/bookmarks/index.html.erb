@@ -3,20 +3,20 @@
 		<% form_tag request.path, :method => 'get' do %>
 		 <% content_tag :label do %>
 	    <%= text_field_tag :search, params[:search] %>
+		<%= select_tag "per_page", options_for_select(%w{1 5 10 20 50 100}, :selected => params[:per_page]) %>
 		 <% end %>
-		<br>
 		<% end %>
-		<%= will_paginate @bookmarks %>
+		<br>
+		<%- unless @bookmarks.empty? -%>
+		<ul class="paginate_sorting">
+			<li><%= sortable 'url', :label => 'URL' %></li>
+			<li><%= sortable 'updated_at', :label => 'Date' %></li>
+		</ul>
+		<%= will_paginate @bookmarks, :previous_label => '&#x25c0;', :next_label => '&#x25b6;' %>
 		<!-- will_paginate @bookmarks, :javascript => "('.pagination a').attr('data-remote', 'true')" -->
 		<!-- will_paginate @bookmarks, :class => 'pagination ajax' -->
 		<!-- http://www.tricksonrails.com/2010/04/rails3-and-will_paginate-doing-easy-remote-links-rails3-tricks-02/ -->
 	</section>
-	<%- unless @bookmarks.empty? -%>
-	<ul class="paginate_sorting">
-		<li><%= sortable 'url', :label => 'URL' %></li>
-		<li><%= sortable 'tag_names', :label => 'Tags' %></li>
-		<li><%= sortable 'updated_at', :label => 'Date' %></li>
-	</ul>
 	<ul class="results">
 		<%= render @bookmarks %>
 	</ul>

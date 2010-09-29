@@ -1,30 +1,41 @@
-.paginator input[type="text"] {
-	box-shadow: 0px 1px 3px #ccc;
-	-webkit-box-shadow: 0px -1px 3px #ccc;
-	-moz-box-shadow: 0px -1px 3px #ccc;
-	border: 3pt solid silver;
-	border-radius: 3pt;
-	-webkit-border-radius: 3pt;
-	-moz-border-radius: 3pt;
-
-}
 .paginator {
-	min-height: 2.5em;
-	text-align: center;
+	min-width: 40em;
+	min-height: 4.6em;
 }
 .paginator * {
-	display: inline-block;
+	display: inline;
 	text-decoration: none;
 	font-style: normal;	
 	font-weight: bold;
 	font-family: 'Trebuchet MS', sans-serif;
 	text-shadow: white 0 1px 1px;
 }
+.paginator input[type="text"] {
+	width: 30.55em;
+	box-shadow: 0px 1px 3px #ccc;
+	-webkit-box-shadow: 0px -1px 3px #ccc;
+	-moz-box-shadow: 0px -1px 3px #ccc;
+}
+.paginator select {
+	box-shadow: 0px 1px 3px #ccc;
+	-webkit-box-shadow: 0px -1px 3px #ccc;
+	-moz-box-shadow: 0px -1px 3px #ccc;
+}
+.paginator label {
+	width: auto;
+}
 .paginator u {
 	opacity: .75;
 }
+.paginate_sorting a,
+.pagination * {
+	display: inline-block;
+	padding: 2pt 3pt;
+	margin-bottom: 2pt;
+	margin-top: 1pt;
+}
 .pagination {
-	padding: 5px;
+	display: inline-block;
 }
 .pagination a,
 .pagination em,
@@ -34,10 +45,8 @@
 	-webkit-border-radius: 3pt;
 	-moz-border-radius: 3pt;
 	padding: 2pt 3pt;
-	line-height: 100%;
 }
 .pagination a {
-	display: inline-block;
 	background: #f6f6f6;
 	background: -webkit-gradient(
 	    linear,
@@ -80,13 +89,13 @@
 }
 .pagination em,
 .pagination span {
-	display: inline-block;
 	background: #ededed;
 	opacity: .5;
 }
 .pagination .previous_page,
 .pagination .next_page {	
-	width: 6em;
+	width: 2em;
+	text-align: center;
 }
 
 /* http://www.evotech.net/articles/testjsentities.html */
@@ -108,7 +117,6 @@
 .paginate_sorting {
 	font-family: 'Trebuchet MS', sans-serif;
 	text-shadow: white 0 1px 1px;
-	text-align: center;
 }
 .paginate_sorting,
 .paginate_sorting li {
@@ -116,19 +124,14 @@
 	padding: 0;
 }
 .paginate_sorting li {
-	display: inline-block;
 	height: 2.3em;
 }
 .paginate_sorting a {
-	height: 1.2em;
-	display: block;
 	border: 1pt solid #ccc;
 	border-radius: 3pt;
 	-webkit-border-radius: 3pt;
 	-moz-border-radius: 3pt;
-	padding: 2pt 4pt 3pt 4pt;
 	border: 1pt solid silver;
-	margin-bottom: 1pt;
 	text-decoration: none;
 	text-shadow: white 0 1px 1px;
 	

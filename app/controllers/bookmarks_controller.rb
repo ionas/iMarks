@@ -8,6 +8,7 @@ class BookmarksController < ApplicationController
   # GET /bookmarks
   # GET /bookmarks.xml
   def index
+    params[:per_page] = per_page
     params[:search] = params[:search].to_s.strip # Remove wrapping whitespaces
     @bookmarks = Bookmark.search(params[:search], params[:page], sort_column, sort_direction, per_page)
     respond_to do |format|
@@ -117,12 +118,13 @@ class BookmarksController < ApplicationController
     end
     
     def per_page
+      if params[:per_page] == nil
+        params[:per_page] = Bookmark.per_page
+      end
       params[:per_page] = params[:per_page].to_i
-      # ((1..Bookmark.per_page_max) === params[:per_page]) ? params[:per_page] : Bookmark.per_page_max
       if params[:per_page] < Bookmark.per_page_min
         params[:per_page] = Bookmark.per_page_min
-      end
-      if params[:per_page]> Bookmark.per_page_max
+      elsif params[:per_page]> Bookmark.per_page_max
         params[:per_page] = Bookmark.per_page_max
       end
       params[:per_page]

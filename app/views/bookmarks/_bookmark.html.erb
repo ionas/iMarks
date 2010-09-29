@@ -1,5 +1,5 @@
 <li class="bookmark <%= cycle('odd', 'even') %>">
-	<h1><a href="<%= bookmark.url %>"><%= bookmark.url %></a><br><small>on <%= bookmark.updated_at.strftime("%Y-%m-%d %H:%M") %></small></h1>
+	<h1><%= url_to_link bookmark.url %><br><small>on <%= bookmark.updated_at.strftime("%Y-%m-%d %H:%M") %></small></h1>
 	<ul class="actions">
 		<li><%= link_to raw('&#x2614'), bookmark %></li>
 		<li><%= link_to raw('&#x270e;'), edit_bookmark_path(bookmark) %></li>
