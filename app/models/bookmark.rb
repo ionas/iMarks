@@ -1,3 +1,5 @@
+require "uri"
+
 class Bookmark < ActiveRecord::Base
   # Thanks go to: http://railscasts.com/episodes/167-more-on-virtual-attributes
   has_many :taggings, :dependent => :destroy
@@ -10,7 +12,7 @@ class Bookmark < ActiveRecord::Base
   # Validations
   validates_presence_of :url
   validates_uniqueness_of :url
-  
+
   validates_format_of :url, :with => URI.regexp
 
   # gem will_paginate
@@ -41,13 +43,13 @@ class Bookmark < ActiveRecord::Base
   # Xapian (like Lucene): http://blog.evanweaver.com/articles/2008/05/26/xapian-search-plugin/
   def self.search(search, page, order_by, order_direction, per_page)
     # Treat spaces and commas and semicolons as wildcards
-    search = search.gsub(' ', '%').gsub(',', '%').gsub(';', '%') unless search == nil
+    search = search.gsub(' ', '%') unless search == nil
     # ^ Better: LIKE %PART1% OR %PART2% / Better yet: weighted?!
     if search == '' # If its empty, we can use a simple find: LIKE "%%" not good.
       paginate :per_page => per_page, :page => page,
         :order => order_by + ' ' + order_direction,
         :include => [:taggings, :tags]
-    else 
+    else
       # Also: order_by and order_direction require SQL injection protection, in before
       paginate_by_sql ['
         SELECT bookmarks.id, bookmarks.url, bookmarks.updated_at, tags.name
@@ -73,19 +75,26 @@ class Bookmark < ActiveRecord::Base
         )
         GROUP BY bookmarks.id
         ORDER BY ' + order_by + ' ' + order_direction,
-        "%#{search}%", "%#{search}%", "%#{search}%"], :page => page, :per_page => per_page
+                       "%#{search}%", "%#{search}%", "%#{search}%"], :page => page, :per_page => per_page
     end
+    # Better would be:
+    # 1. case insensitive find
+    # 2. case sensitive write find result or new tag
+    # 3. same for dashes (Open-Source vs opensource)
   end
 
   private
 
     def assign_tags
-      if @tag_names
-        # hm does not work for one tag
+      tag = false
+      if @tag_names = @tag_names.gsub(/^[\s|,]*/, '').gsub(/[\s|,]*$/, '').gsub(/(\s,|,\s)+/  , ',')
+        # Remove whitespace+comma...  ^ befoe ...          ^ after ...          ^ inbewteen.
+        @tag_names.downcase!
         self.tags = @tag_names.split(/,+/).collect do |name|
-          Tag.find_or_create_by_name(name.strip) # .downcase!
+          name = name.strip
+          self.touch # Bookmark.updated_at
+          tag = Tag.find_or_create_by_name(name)
         end
-        self.touch # Bookmark.updated_at
       end
     end
 

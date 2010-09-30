@@ -1,3 +1,6 @@
+* {
+	text-shadow: white 0 1.5px 0.5px;
+}
 .paginator {
 	min-width: 40em;
 	min-height: 4.6em;
@@ -8,7 +11,6 @@
 	font-style: normal;	
 	font-weight: bold;
 	font-family: 'Trebuchet MS', sans-serif;
-	text-shadow: white 0 1px 1px;
 }
 .paginator input[type="text"] {
 	width: 30.55em;
@@ -116,7 +118,6 @@
 }
 .paginate_sorting {
 	font-family: 'Trebuchet MS', sans-serif;
-	text-shadow: white 0 1px 1px;
 }
 .paginate_sorting,
 .paginate_sorting li {
@@ -133,7 +134,6 @@
 	-moz-border-radius: 3pt;
 	border: 1pt solid silver;
 	text-decoration: none;
-	text-shadow: white 0 1px 1px;
 	
 	background: #f6f6f6;
 	background: -webkit-gradient(

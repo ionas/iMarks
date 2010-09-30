@@ -25,8 +25,9 @@ textarea, input[type="text"] {
 	-moz-border-radius: 3pt;
 }
 textarea {
-	height: 15em;
-	width: 40em;
+	height: 4.2em;
+	width: 20em;
+	vertical-align: top;
 }
 label,
 input {
@@ -68,7 +69,6 @@ select {
 	box-shadow: 0px 1px 1px #ddd;
 	-webkit-box-shadow: 0px 1px 1px #ddd;
 	-moz-box-shadow: 0px 1px 1px #ddd;
-	text-shadow: white 0 1px 1px;
 	cursor: pointer;
 	font-weight: bold;
 	font-family: "Trebuchet MS", sans-serif;

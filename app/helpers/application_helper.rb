@@ -9,14 +9,22 @@ module ApplicationHelper
     link_to options[:label], params.merge(sort_options), {:class => css_class}
   end
   
-  def url_to_link(url)
+  def url_to_link(url, max_size = 64)
     # More protocols/uri schemes:
     #   http://en.wikipedia.org/wiki/URI_scheme#Official_IANA-registered_schemes
     protocols = {
-      'http' => 'http://',
-      'https' => 'https://',
-      'ftp' => 'ftp://',
-      'chrome' => 'chrome://'
+      'H'    => 'http://',
+      'HS'   => 'https://',
+      'F'    => 'ftp://',
+      'SF'   => 'sftp://',
+      'FILE' => 'file://',
+      'D'    => 'data:',
+      'RS'   => 'rsync://',
+      'NEWS' => 'nntp://',
+      'IRC'  => 'irc://',
+      'CAL'  => 'webcal://',
+      'VS'   => 'view-source:',
+      'BOUT' => 'about:'
     }
     protocol = nil
     protocols.each do |protocol_key, uri_scheme_key| 
@@ -24,11 +32,19 @@ module ApplicationHelper
         protocol = protocol_key
       end
     end
+    url_label = url    
+    # kill possible trailing slashes
+    url_label << '/' if url_label[-1].chr != '/'
+    url_label.chop!
+    # shorten the url_label
+    if url_label.size > max_size
+      url_label = url_label[0..max_size-1] + '&#x2026;'
+    end
     if protocol
-      raw '<a href="' + url + '" class="protocol ' + protocol + '" title="' + url + '">' +
-        url.sub(protocols[protocol], '') + '</a>'
+      raw '<a href="' + url + '" class="' + protocol + '" title="' + url + '">' +
+        url_label.sub(protocols[protocol], '') + '</a>'
     else
-      raw '<a href="' + url + '" class="protocol unknown" title="' + url + '">' + url + '</a>'
+      raw '<a href="' + url + '" class="unknown" title="' + url + '">' + url_label + '</a>'
     end
   end
   

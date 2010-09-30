@@ -50,6 +50,7 @@ class BookmarksController < ApplicationController
   # GET /bookmarks/1/edit
   def edit
     @bookmark = Bookmark.find(params[:id])
+    @bookmark.tag_names += ', ' unless @bookmark.tag_names.empty?
   end
 
   # POST /bookmarks
