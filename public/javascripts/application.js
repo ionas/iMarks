@@ -3,14 +3,14 @@
 $(function() {
 	$('.bookmark h1 a').attr('target', 'blank');
 
-	$(window).keypress(function(event) {
-		if ((event.which == 115 && event.ctrlKey)){
-			event.preventDefault();
-			alert("Ctrl+S pressed");
-			$('input[name="submit"]').click()
-		}
-	});
+	function saveBookmark(evt){
+		$('#bookmark_submit').click()
+		return false;
+	}
 	
+	$(document).bind('keydown', 'ctrl+s', saveBookmark);
+	$(document).bind('keydown', 'alt+s', saveBookmark);
+	$(document).bind('keydown', 'meta+s', saveBookmark);
 	
 	/*
 	$("[title]").tooltip({

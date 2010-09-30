@@ -41,6 +41,8 @@ class Bookmark < ActiveRecord::Base
   # SearchLogic: http://railscasts.com/episodes/176-searchlogic (not yet rails3)
   # Thinking Sphinx: http://railscasts.com/episodes/120-thinking-sphinx (requires rake indexing)
   # Xapian (like Lucene): http://blog.evanweaver.com/articles/2008/05/26/xapian-search-plugin/
+  # http://squeejee.com/blog/2008/07/23/simple-ruby-on-rails-full-text-search-using-xapian/
+  # Acts_As_Indexed: http://douglasfshearer.com/blog/rails-plugin-acts_as_indexed
   def self.search(search, page, order_by, order_direction, per_page)
     # Treat spaces and commas and semicolons as wildcards
     search = search.gsub(' ', '%') unless search == nil
@@ -52,29 +54,29 @@ class Bookmark < ActiveRecord::Base
     else
       # Also: order_by and order_direction require SQL injection protection, in before
       paginate_by_sql ['
-        SELECT bookmarks.id, bookmarks.url, bookmarks.updated_at, tags.name
-        FROM bookmarks
-        LEFT OUTER JOIN taggings ON taggings.bookmark_id = bookmarks.id
-        LEFT OUTER JOIN tags ON tags.id = taggings.tag_id
-        LEFT OUTER JOIN taggings AS taggings_join ON bookmarks.id = taggings_join.bookmark_id
-        LEFT OUTER JOIN tags AS tags_join ON taggings_join.tag_id = tags_join.id
-        WHERE (
-          bookmarks.url LIKE ?
-          OR (
+          SELECT bookmarks.id, bookmarks.url, bookmarks.updated_at, tags.name
+          FROM bookmarks
+          LEFT OUTER JOIN taggings ON taggings.bookmark_id = bookmarks.id
+          LEFT OUTER JOIN tags ON tags.id = taggings.tag_id
+          LEFT OUTER JOIN taggings AS taggings_join ON bookmarks.id = taggings_join.bookmark_id
+          LEFT OUTER JOIN tags AS tags_join ON taggings_join.tag_id = tags_join.id
+          WHERE (
             bookmarks.url LIKE ?
+            OR (
+              bookmarks.url LIKE ?
+              AND bookmarks.id = taggings.bookmark_id
+              AND taggings.tag_id = tags.id
+              AND tags.id = tags_join.id
+            )
+          ) OR (
+            tags_join.name LIKE ?
+            AND tags_join.id = taggings_join.tag_id
+            AND taggings_join.bookmark_id = bookmarks.id
             AND bookmarks.id = taggings.bookmark_id
             AND taggings.tag_id = tags.id
-            AND tags.id = tags_join.id
           )
-        ) OR (
-        tags_join.name LIKE ?
-          AND tags_join.id = taggings_join.tag_id
-          AND taggings_join.bookmark_id = bookmarks.id
-          AND bookmarks.id = taggings.bookmark_id
-          AND taggings.tag_id = tags.id
-        )
-        GROUP BY bookmarks.id
-        ORDER BY ' + order_by + ' ' + order_direction,
+          GROUP BY bookmarks.id
+          ORDER BY ' + order_by + ' ' + order_direction,
                        "%#{search}%", "%#{search}%", "%#{search}%"], :page => page, :per_page => per_page
     end
     # Better would be:
@@ -86,9 +88,8 @@ class Bookmark < ActiveRecord::Base
   private
 
     def assign_tags
-      tag = false
       if @tag_names = @tag_names.gsub(/^[\s|,]*/, '').gsub(/[\s|,]*$/, '').gsub(/(\s,|,\s)+/  , ',')
-        # Remove whitespace+comma...  ^ befoe ...          ^ after ...          ^ inbewteen.
+        # Remove whitespace+comma...  ^ before ...         ^ after ...          ^ inbewteen.
         @tag_names.downcase!
         self.tags = @tag_names.split(/,+/).collect do |name|
           name = name.strip
