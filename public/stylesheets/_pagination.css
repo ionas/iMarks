@@ -1,0 +1,203 @@
+
+.paginator {
+	min-width: 40em;
+	min-height: 4.6em;
+}
+.paginator * {
+	display: inline;
+	text-decoration: none;
+	font-style: normal;	
+	font-weight: bold;
+	font-family: 'Trebuchet MS', sans-serif;
+}
+.paginator input[type="text"] {
+	width: 30.55em;
+	box-shadow: 0px 1px 3px #ccc;
+	-webkit-box-shadow: 0px -1px 3px #ccc;
+	-moz-box-shadow: 0px -1px 3px #ccc;
+}
+.paginator select {
+	box-shadow: 0px 1px 3px #ccc;
+	-webkit-box-shadow: 0px -1px 3px #ccc;
+	-moz-box-shadow: 0px -1px 3px #ccc;
+}
+.paginator label {
+	width: auto;
+}
+.paginator u {
+	opacity: .75;
+}
+.paginate_sorting a,
+.pagination * {
+	display: inline-block;
+	padding: 2pt 3pt;
+	margin-bottom: 2pt;
+	margin-top: 1pt;
+}
+.pagination {
+	display: inline-block;
+}
+.pagination a,
+.pagination em,
+.pagination span {
+	border: 1pt solid #ccc;
+	border-radius: 3pt;
+	-webkit-border-radius: 3pt;
+	-moz-border-radius: 3pt;
+	padding: 2pt 3pt;
+}
+.pagination a {
+	background: #f6f6f6;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.43, rgb(230,230,230)),
+	    color-stop(0.71, rgb(255,255,255)),
+	    color-stop(0.86, rgb(245,245,245))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(230,230,230) 43%,
+	    rgb(255,255,255) 71%,
+	    rgb(245,245,245) 86%
+	);
+	box-shadow: 0px 1px 1px #ddd;
+	-webkit-box-shadow: 0px 1px 1px #ddd;
+	-moz-box-shadow: 0px 1px 1px #ddd;
+}
+.pagination a:hover {
+	background: #eaeaea;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.43, rgb(214,214,214)),
+	    color-stop(0.71, rgb(245,245,245)),
+	    color-stop(0.83, rgb(240,240,240))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(214,214,214) 43%,
+	    rgb(245,245,245) 71%,
+	    rgb(240,240,240) 83%
+	);
+	color: black;
+	box-shadow: 0px 0px 1px #ddd;
+	-webkit-box-shadow: 0px 0px 1px #ddd;
+	-moz-box-shadow: 0px 0px 1px #ddd;
+}
+.pagination em,
+.pagination span {
+	background: #ededed;
+	opacity: .5;
+}
+.pagination .previous_page,
+.pagination .next_page {	
+	width: 2em;
+	text-align: center;
+}
+
+/* http://www.evotech.net/articles/testjsentities.html */
+/* http://www.fileformat.info/info/unicode/char/25b2/fontsupport.htm */
+/* http://www.fileformat.info/info/unicode/char/search.htm */
+.sort_current.sort_asc:after,
+.sort_current.sort_desc:after {
+	font-family: monospace;
+	padding-left: .2em;
+	float: right;
+	opacity: .67;
+}
+.sort_current.sort_asc:after {
+	content: '\25BC';
+}
+.sort_current.sort_desc:after {
+	content: '\25B2';
+}
+.paginate_sorting {
+	font-family: 'Trebuchet MS', sans-serif;
+}
+.paginate_sorting,
+.paginate_sorting li {
+	margin: 0;
+	padding: 0;
+}
+.paginate_sorting li {
+	height: 2.3em;
+}
+.paginate_sorting a {
+	border: 1pt solid #ccc;
+	border-radius: 3pt;
+	-webkit-border-radius: 3pt;
+	-moz-border-radius: 3pt;
+	border: 1pt solid silver;
+	text-decoration: none;
+	
+	background: #f6f6f6;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.43, rgb(230,230,230)),
+	    color-stop(0.71, rgb(255,255,255)),
+	    color-stop(0.86, rgb(245,245,245))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(230,230,230) 43%,
+	    rgb(255,255,255) 71%,
+	    rgb(245,245,245) 86%
+	);
+	box-shadow: 0px 1px 1px #ddd;
+	-webkit-box-shadow: 0px 1px 1px #ddd;
+	-moz-box-shadow: 0px 1px 1px #ddd;
+}
+.paginate_sorting a:hover,
+.paginate_sorting a.sort_current:hover {
+	background: #eaeaea;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.43, rgb(214,214,214)),
+	    color-stop(0.71, rgb(245,245,245)),
+	    color-stop(0.83, rgb(240,240,240))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(214,214,214) 43%,
+	    rgb(245,245,245) 71%,
+	    rgb(240,240,240) 83%
+	);
+	color: black;
+	box-shadow: 0px 0px 1px #ddd;
+	-webkit-box-shadow: 0px 0px 1px #ddd;
+	-moz-box-shadow: 0px 0px 1px #ddd;
+}
+.paginate_sorting a.sort_current {
+	background: #eaeaea;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.43, rgb(214,214,214)),
+	    color-stop(0.71, rgb(245,245,245)),
+	    color-stop(0.83, rgb(240,240,240))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(214,214,214) 43%,
+	    rgb(245,245,245) 71%,
+	    rgb(240,240,240) 83%
+	);
+	color: black;
+	box-shadow: 0px 0px 1px #ddd;
+	-webkit-box-shadow: 0px 0px 1px #ddd;
+	-moz-box-shadow: 0px 0px 1px #ddd;
+}
+.paginate_sorting a,
+.paginate_sorting a:hover,
+.paginate_sorting a.sort_current:hover,
+.paginate_sorting a.sort_current {
+	cursor: pointer;
+}

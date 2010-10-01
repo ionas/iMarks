@@ -1,37 +1,45 @@
-<section class="paginator">
+<header>
 	<%= form_tag request.path, :method => 'get' do %>
-	 <%= content_tag :label do %>
-    <%= text_field_tag :search, params[:search] %>
-	<%= select_tag "per_page", options_for_select(%w{1 5 10 20 50 100}, :selected => params[:per_page], :id => 'per_page') %>
-	 <% end %>
-	<% end %>
-	<br>
-	<%- unless @bookmarks.empty? -%>
-	<ul class="paginate_sorting">
-		<li><%= sortable 'url', :label => 'URL' %></li>
-		<li><%= sortable 'updated_at', :label => 'Date' %></li>
+	<nav class="search">
+		<%= text_field_tag :search, params[:search] %>
+	</nav>
+	<%-  unless @bookmarks.empty? -%>
+	<nav class="pagination">
+		<%=	will_paginate @bookmarks, :inner_window => 2, :outer_window => 0, :previous_label => '&#x25c0;', :next_label => '&#x25b6;', :container => false %>
+		<!-- will_paginate @bookmarks, :javascript => "('.pagination a').attr('data-remote', 'true')" -->
+		<!-- will_paginate @bookmarks, :class => 'pagination ajax' -->
+		<!-- http://www.tricksonrails.com/2010/04/rails3-and-will_paginate-doing-easy-remote-links-rails3-tricks-02/ -->
+	</nav>
+	<nav class="sorting">
+		<p>
+			<%= sortable 'url', :label => 'URL' %>
+			<%= sortable 'updated_at', :label => 'Date' %>
+			<%= select_tag "per_page", options_for_select(%w{1 5 10 20 50 100}, :selected => params[:per_page], :id => 'per_page') %>
+		</p>
+	</nav>
+	<%-  end -%>
+	<%- end -%>
+</header>
+<section class="results">
+	<%- unless @bookmarks.empty? %>
+	<ul>
+		<%= render @bookmarks %>
 	</ul>
-	<%= will_paginate @bookmarks, :previous_label => '&#x25c0;', :next_label => '&#x25b6;' %>
-	<!-- will_paginate @bookmarks, :javascript => "('.pagination a').attr('data-remote', 'true')" -->
-	<!-- will_paginate @bookmarks, :class => 'pagination ajax' -->
-	<!-- http://www.tricksonrails.com/2010/04/rails3-and-will_paginate-doing-easy-remote-links-rails3-tricks-02/ -->
-	<% end %>
+	<%- else -%>
+	<p>Your search - <strong><%= params[:search] %></strong> - did not match any links or taggings.</p>
+	<h3>Suggestions:</h3>
+	<ul>
+		<li>Make sure all words are spelled correctly.</li>
+		<li>Try different keywords.</li>
+		<li>Try more general keywords.</li>
+		<li>Try fewer keywords.</li>
+	</ul>
+	<%- end -%>
+	<br>
 </section>
-<%- unless @bookmarks.empty? %>
-<ul class="results">
-	<%= render @bookmarks %>
-</ul>
-<%- else -%>
-<p>Your search - <strong><%= params[:search] %></strong> - did not match any links or taggings.</p>
-<h3>Suggestions:</h3>
-<ul>
-	<li>Make sure all words are spelled correctly.</li>
-	<li>Try different keywords.</li>
-	<li>Try more general keywords.</li>
-	<li>Try fewer keywords.</li>
-</ul>
-<%- end -%>
-<br>
-<%= link_to 'New Bookmark', new_bookmark_path %>
-
-<%= render 'tag_cloud' %>
+<!--
+<footer>
+	<%= render 'tag_cloud' %>
+	<%= link_to 'New Bookmark', new_bookmark_path %>
+</footer>
+-->

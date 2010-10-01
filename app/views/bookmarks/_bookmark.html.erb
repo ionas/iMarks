@@ -1,16 +1,17 @@
 <li class="bookmark <%= cycle('odd', 'even') %>">
-	<h1 class="protocol"><%= url_to_link bookmark.url %><small>on <%= bookmark.updated_at.strftime("%Y-%m-%d %H:%M") %></small></h1>
+	<h1 class="protocol"><%= url_to_link bookmark.url, bookmark.updated_at.strftime("%Y-%m-%d %H:%M") %></h1>
 	<ul class="actions">
-		<li><%= link_to raw('&#x2614'), bookmark %></li>
-		<li><%= link_to raw('&#x270e;'), edit_bookmark_path(bookmark) %></li>
-		<li><%= button_to 'X', bookmark, :confirm => 'Are you sure?', :method => :delete %></li>
+		<li><%= link_to raw('&#x2614;'), bookmark, :title => 'Details' %></li>
+		<li><%= link_to raw('&#x270e;'), edit_bookmark_path(bookmark), :title => 'Edit' %></li>
+		<li><%= button_to 'X', bookmark, :confirm => 'Are you sure?', :method => :delete, :title => 'Remove' %></li>
 	</ul>
 	<%- unless bookmark.tags.empty? -%>
 	<!--<h2>Tags</h2>-->
 	<ul class="tags">
 		<%- bookmark.tags.each do |tag| -%>
-		<li><a href="?search=<%= tag.name %>"><%= tag.name %></a></li>
+		<li><a href="?search=<%= raw URI.escape(tag.name) %>" title="Find tagged &lt;<%= tag.name %>&gt;"><%= tag.name %></a></li>
 		<%- end -%>
 	</ul>
 	<%- end -%>
+	<br style="clear: both;">
 </li>

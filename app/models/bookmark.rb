@@ -45,7 +45,7 @@ class Bookmark < ActiveRecord::Base
   # Acts_As_Indexed: http://douglasfshearer.com/blog/rails-plugin-acts_as_indexed
   def self.search(search, page, order_by, order_direction, per_page)
     # Treat spaces and commas and semicolons as wildcards
-    search = search.gsub(' ', '%') unless search == nil
+    search = search.downcase.gsub(' ', '%') unless search == nil
     # ^ Better: LIKE %PART1% OR %PART2% / Better yet: weighted?!
     if search == '' # If its empty, we can use a simple find: LIKE "%%" not good.
       paginate :per_page => per_page, :page => page,
@@ -89,12 +89,15 @@ class Bookmark < ActiveRecord::Base
 
     def assign_tags
       if @tag_names = @tag_names.gsub(/^[\s|,]*/, '').gsub(/[\s|,]*$/, '').gsub(/(\s,|,\s)+/  , ',')
-        # Remove whitespace+comma...  ^ before ...         ^ after ...          ^ inbewteen.
-        @tag_names.downcase!
+        # Remove whitespace+comma.. . ^ before ...         ^ after ...          ^ inbetween.
+        # TODO: Max 100 Tags
         self.tags = @tag_names.split(/,+/).collect do |name|
-          name = name.strip
-          self.touch # Bookmark.updated_at
-          tag = Tag.find_or_create_by_name(name)
+          unless tag = Tag.find_by_name(name.strip.downcase)
+            if tag = Tag.create(:name => name.strip)
+              self.touch # Bookmark.updated_at
+            end
+          end
+          tag # Return tag to block collect context
         end
       end
     end

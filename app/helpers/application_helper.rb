@@ -9,10 +9,12 @@ module ApplicationHelper
     link_to options[:label], params.merge(sort_options), {:class => css_class}
   end
   
-  def url_to_link(url, max_size = 64)
+  def url_to_link(url, info, max_size = 40)
     # More protocols/uri schemes:
     #   http://en.wikipedia.org/wiki/URI_scheme#Official_IANA-registered_schemes
     protocols = {
+      # TODO: Move this to the model
+      # TODO: Add validation_exists! callbacks for http
       'H'    => 'http://',
       'HS'   => 'https://',
       'F'    => 'ftp://',
@@ -40,11 +42,12 @@ module ApplicationHelper
     if url_label.size > max_size
       url_label = url_label[0..max_size-1] + '&#x2026;'
     end
+    title = url + ' &middot; saved:' + info
     if protocol
-      raw '<a href="' + url + '" class="' + protocol + '" title="' + url + '">' +
+      raw '<a href="' + url + '" class="' + protocol + '" title="' + title + '">' +
         url_label.sub(protocols[protocol], '') + '</a>'
     else
-      raw '<a href="' + url + '" class="unknown" title="' + url + '">' + url_label + '</a>'
+      raw '<a href="' + url + '" class="unknown" title="' + title + '">' + url_label + '</a>'
     end
   end
   

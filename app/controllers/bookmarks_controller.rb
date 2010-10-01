@@ -101,6 +101,7 @@ class BookmarksController < ApplicationController
 
     # Thanks to: http://railscasts.com/episodes/82-http-basic-authentication
     def authenticate
+      return true # disabled auth
       authenticate_or_request_with_http_basic do |username, password|
         username == 'joe' && password = 'put'
       end

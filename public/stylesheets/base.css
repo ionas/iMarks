@@ -1,0 +1,391 @@
+* {
+	background: none;
+	font-size: 100%;
+	margin: 0;
+	padding: 0;
+  	vertical-align: baseline;
+	font-family: Tahoma, Arial, sans-serif;
+	line-height: 100%;
+}
+body {
+	font-size: 10px;
+}
+a,
+a:visited {
+	color: #038;
+	text-decoration: none;
+}
+a:hover {
+	color: #09d;
+}
+
+/* Debug */
+html {
+	/* background: #aaa; */ /*debug*/
+}
+body {
+	/* width: 40em;
+	height: 40em; */
+	overflow: hidden;
+	background: white; /*debug*/
+}
+
+/* Form */
+textarea,
+input[type="text"] {
+	padding: .3em 0;
+	font-size: 130%;
+	letter-spacing: .1em;
+	font-family: 'Lucida Console', 'Andale Mono',  'Consolas', 'Monaco', monospace;
+	font-size: 11pt;
+	line-height: 100%;
+}
+
+input[type="text"] {
+	text-indent: .3em;
+}
+/* Layout */
+header {
+	height: 6em;
+	position: relative;
+	
+	text-shadow: white 0 1px 0px;
+}
+.results {
+	clear: both;
+	overflow: auto;
+	overflow-y: auto;
+	overflow-x: hidden;
+	height: 33.2em; /* 40 - header|height - margin-top - borders */ 
+	margin-top: .3em;
+	border: .2em solid #ddd;
+	border-radius: 3pt;
+	-webkit-border-radius: 3pt;
+	-moz-border-radius: 3pt;
+	background: #f8f8f8;
+}
+header form,
+header input {
+	width: 100%;
+	border: 0;
+}
+.search {
+	border: .2em solid #ddd;
+	border-radius: 2pt;
+	-webkit-border-radius: 3pt;
+	-moz-border-radius: 3pt;	
+	background: #fdfdfd;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.18, rgb(255,255,255)),
+	    color-stop(0.94, rgb(242,242,242)),
+	    color-stop(0.95, rgb(232,232,232))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(255,255,255) 18%,
+	    rgb(242,242,242) 94%,
+	    rgb(232,232,232) 95%
+	);
+	text-shadow: none;
+	margin-bottom: .6em;
+}
+.pagination,
+.sorting {
+	float: left;
+}
+.sorting select {
+	height: 1.67em;
+}
+.pagination {
+	margin-right: 13.5em;
+}
+.sorting select,
+.sorting a,
+.pagination a,
+.pagination em,
+.pagination span {
+	border: 1pt solid #bbb;
+	border-radius: 3pt;
+	-webkit-border-radius: 3pt;
+	-moz-border-radius: 3pt;
+	color: black;
+	font-size: 130%;
+	font-family: 'Trebuchet MS', 'Arial', Tahoma, Geneva, sans-serif;
+	line-height: 150%;
+	padding: 0 2pt;
+	margin-bottom: .3em;
+}
+.sorting a,
+.pagination a,
+.pagination em,
+.pagination span {
+	float: left;
+	margin-right: 2pt;
+}
+.sorting select,
+.sorting a,
+.pagination a {
+	background: #f5f5f5;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.43, rgb(230,230,230)),
+	    color-stop(0.71, rgb(255,255,255)),
+	    color-stop(0.86, rgb(245,245,245))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(230,230,230) 43%,
+	    rgb(255,255,255) 71%,
+	    rgb(245,245,245) 86%
+	);
+	box-shadow: 0px 1px 1px #ddd;
+	-webkit-box-shadow: 0px 1px 1px #ddd;
+	-moz-box-shadow: 0px 1px 1px #ddd;
+}
+.sorting a:hover,
+.pagination a:hover {
+	background: #eaeaea;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.43, rgb(214,214,214)),
+	    color-stop(0.71, rgb(245,245,245)),
+	    color-stop(0.83, rgb(240,240,240))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(214,214,214) 43%,
+	    rgb(245,245,245) 71%,
+	    rgb(240,240,240) 83%
+	);
+	box-shadow: 0px 0px 1px #ddd;
+	-webkit-box-shadow: 0px 0px 1px #ddd;
+	-moz-box-shadow: 0px 0px 1px #ddd;
+}
+.pagination em,
+.pagination span {
+	background: #ededed;
+	opacity: .5;
+}
+.pagination .previous_page,
+.pagination .next_page {	
+	width: 2em;
+	text-align: center;
+}
+.sorting {
+	position: absolute;
+	height: 1.67em;
+	right: 0;
+}
+.sorting a:hover,
+.sorting a.sort_current:hover {
+	background: #eaeaea;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.43, rgb(214,214,214)),
+	    color-stop(0.71, rgb(245,245,245)),
+	    color-stop(0.83, rgb(240,240,240))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(214,214,214) 43%,
+	    rgb(245,245,245) 71%,
+	    rgb(240,240,240) 83%
+	);
+	box-shadow: 0px 0px 1px #ddd;
+	-webkit-box-shadow: 0px 0px 1px #ddd;
+	-moz-box-shadow: 0px 0px 1px #ddd;
+}
+.sorting a.sort_current {
+	background: #eaeaea;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.43, rgb(214,214,214)),
+	    color-stop(0.71, rgb(245,245,245)),
+	    color-stop(0.83, rgb(240,240,240))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(214,214,214) 43%,
+	    rgb(245,245,245) 71%,
+	    rgb(240,240,240) 83%
+	);
+	box-shadow: 0px 0px 1px #ddd;
+	-webkit-box-shadow: 0px 0px 1px #ddd;
+	-moz-box-shadow: 0px 0px 1px #ddd;
+}
+.sorting .sort_current.sort_asc:after,
+.sorting .sort_current.sort_desc:after {
+	font-family: monospace;
+	padding-left: .2em;
+	float: right;
+	opacity: .67;
+}
+.sorting .sort_current.sort_asc:after {
+	content: '\25BC';
+}
+.sorting .sort_current.sort_desc:after {
+	content: '\25B2';
+}
+.bookmark {
+	font-size: 120%;
+	border-bottom: 2pt solid #ddd;
+	padding: .4em;
+	padding-bottom: .5em;
+	position: relative;
+}
+.bookmark:last-child {
+	border-bottom: 0;
+	box-shadow: 0px 1px 3px #ddd;
+	-webkit-box-shadow: 0px 1px 3px #ddd;
+	-moz-box-shadow: 0px 1px 3px #ddd;
+}
+.bookmark.odd {
+	background: #f8f8f8;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.2, rgb(245,245,245)),
+	    color-stop(0.93, rgb(250,250,250)),
+	    color-stop(0.8, rgb(250,250,250))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(245,245,245) 20%,
+	    rgb(250,250,250) 93%,
+	    rgb(250,250,250) 80%
+	);
+}
+.bookmark.even {
+	background: #fefefe;
+}
+.bookmark .protocol {
+	display: inline-block;
+}
+.bookmark .protocol a {
+	display: inline-block;
+	font-size: 120%;
+	color: #038;
+	text-decoration: none;
+	font-weight: bold;
+	border-radius: 3pt;
+	-webkit-border-radius: 3pt;
+	-moz-border-radius: 3pt;
+	border: .1em solid transparent;
+	padding-right: .3em;
+	padding-left: .2em;
+}
+.bookmark .protocol:hover a:before,
+.bookmark .protocol a:hover {
+	color: white;
+	background: #038;
+}
+.bookmark .protocol a:before {
+	font-weight: normal;
+	font-size: 75%;
+	font-family: 'Trebuchet MS', 'Trebuchet', sans-serif;
+	vertical-align: baseline;
+	padding-right: .3em;
+	content: attr(class)
+}
+.bookmark .tags li {
+	display: inline;
+	text-transform: capitalize;
+}
+.tags {
+	clear: both;
+}
+.actions {
+	position: absolute;
+	top: .4em;
+	right: .4em;
+}
+.tags a,
+.bookmark .actions a,
+.bookmark .actions input {
+	float: left;
+	font-family: 'Trebuchet MS', sans-serif;
+	border: 1pt solid #ddd;
+	border-radius: 3pt;
+	-webkit-border-radius: 3pt;
+	-moz-border-radius: 3pt;
+	border: 1pt solid silver;
+	text-decoration: none;
+	font-weight: bold;
+	color: #022;
+	text-shadow: #ffc 0 1px 0px;
+	background: #f6f6f6;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.43, rgb(230,230,230)),
+	    color-stop(0.71, rgb(255,255,255)),
+	    color-stop(0.86, rgb(245,245,245))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(230,230,230) 43%,
+	    rgb(255,255,255) 71%,
+	    rgb(245,245,245) 86%
+	);
+}
+.tags a {
+	margin-top: .3em;
+	margin-right: .4em;
+}
+.bookmark .actions a,
+.bookmark .actions input {
+	margin-left: .2em;
+}
+.tags a,
+.bookmark .actions a {
+	line-height: 120%;
+	padding-left: .2em;
+	padding-right: .2em;
+	height: 1.2em;
+}
+.bookmark .actions input {
+	height: 1.40em;
+	padding: .2em .4em ;
+}
+.tags a:hover,
+.bookmark .actions a:hover,
+.bookmark .actions input:hover {
+	background: #eaeaea;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.43, rgb(214,214,214)),
+	    color-stop(0.71, rgb(245,245,245)),
+	    color-stop(0.83, rgb(240,240,240))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(214,214,214) 43%,
+	    rgb(245,245,245) 71%,
+	    rgb(240,240,240) 83%
+	);
+	color: black;
+	cursor: pointer;
+}
+.bookmark .actions {
+	vertical-align: bottom;
+	float: right;
+}
+.bookmark .actions * {
+	display: inline;
+	margin: 0;
+}

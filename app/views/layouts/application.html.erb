@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>iMarks &mdash; Save bookmarks in your own cloud.</title>
-		<%= stylesheet_link_tag 'scaffold' %>
-		<%= stylesheet_link_tag 'form' %>
-		<%= stylesheet_link_tag 'table' %>
-		<%= stylesheet_link_tag 'pagination' %>
-		<%= stylesheet_link_tag 'content' %>
+		<%= stylesheet_link_tag 'base' %>
 		<%= javascript_include_tag 'jquery' %>
 		<%= javascript_include_tag 'jquery.tools' %>
 		<%= javascript_include_tag 'jquery.hotkeys' %>
@@ -16,6 +13,6 @@
 		<%= csrf_meta_tag %>
 	</head>
 	<body>
-	<%= yield %>
+		<%= yield %>
 	</body>
 </html>
