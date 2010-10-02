@@ -9,7 +9,7 @@ module ApplicationHelper
     link_to options[:label], params.merge(sort_options), {:class => css_class, :title => column }
   end
   
-  def url_to_link(url, info, max_size = 45)
+  def url_to_link(url, info, max_size = 44)
     # More protocols/uri schemes:
     #   http://en.wikipedia.org/wiki/URI_scheme#Official_IANA-registered_schemes
     protocols = {
@@ -42,7 +42,7 @@ module ApplicationHelper
     if url_label.size > max_size
       url_label = url_label[0..max_size-1] + '&#x2026;'
     end
-    title = url + ' &middot; saved:' + info
+    title = info + ': ' + url 
     if protocol
       raw '<a href="' + url + '" class="' + protocol + '" title="' + title + '">' +
         url_label.sub(protocols[protocol], '') + '</a>'
