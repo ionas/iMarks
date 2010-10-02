@@ -6,10 +6,10 @@ module ApplicationHelper
     direction = column == sort_column && sort_direction == 'desc' ? 'asc' : 'desc'
     link_params = sort_options = {:sort_by => column, :sort_direction => direction}
     css_class = column == sort_column ? "sort_current sort_#{sort_direction}" : nil
-    link_to options[:label], params.merge(sort_options), {:class => css_class}
+    link_to options[:label], params.merge(sort_options), {:class => css_class, :title => column }
   end
   
-  def url_to_link(url, info, max_size = 40)
+  def url_to_link(url, info, max_size = 45)
     # More protocols/uri schemes:
     #   http://en.wikipedia.org/wiki/URI_scheme#Official_IANA-registered_schemes
     protocols = {

@@ -12,8 +12,11 @@
 	</nav>
 	<nav class="sorting">
 		<p>
-			<%= sortable 'url', :label => 'URL' %>
-			<%= sortable 'updated_at', :label => 'Date' %>
+			<%- unless params[:search].empty? -%>
+			<%=  sortable 'relevance', :label => 'R' %>
+			<%- end -%>
+			<%= sortable 'url', :label => 'U' %>
+			<%= sortable 'updated_at', :label => 'D' %>
 			<%= select_tag "per_page", options_for_select(%w{1 5 10 20 50 100}, :selected => params[:per_page], :id => 'per_page') %>
 		</p>
 	</nav>

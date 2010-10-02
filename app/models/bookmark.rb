@@ -44,45 +44,24 @@ class Bookmark < ActiveRecord::Base
   # http://squeejee.com/blog/2008/07/23/simple-ruby-on-rails-full-text-search-using-xapian/
   # Acts_As_Indexed: http://douglasfshearer.com/blog/rails-plugin-acts_as_indexed
   def self.search(search, page, order_by, order_direction, per_page)
-    # Treat spaces and commas and semicolons as wildcards
-    search = search.downcase.gsub(' ', '%') unless search == nil
-    # ^ Better: LIKE %PART1% OR %PART2% / Better yet: weighted?!
-    if search == '' # If its empty, we can use a simple find: LIKE "%%" not good.
+    if search == '' or search == nil # If its empty, we can use a simple find: LIKE "%%" not good.
       paginate :per_page => per_page, :page => page,
         :order => order_by + ' ' + order_direction,
         :include => [:taggings, :tags]
     else
-      # Also: order_by and order_direction require SQL injection protection, in before
+      # http://www.databasejournal.com/sqletc/article.php/1578331/Using-Fulltext-Indexes-in-MySQL---Part-1.htm
       paginate_by_sql ['
-          SELECT bookmarks.id, bookmarks.url, bookmarks.updated_at, tags.name
+          SELECT bookmarks.id, bookmarks.url, bookmarks.updated_at, tags.name,
+            MATCH(bookmarks.url, tags.name) AGAINST ("?" IN BOOLEAN MODE) AS relevance
           FROM bookmarks
-          LEFT OUTER JOIN taggings ON taggings.bookmark_id = bookmarks.id
-          LEFT OUTER JOIN tags ON tags.id = taggings.tag_id
-          LEFT OUTER JOIN taggings AS taggings_join ON bookmarks.id = taggings_join.bookmark_id
-          LEFT OUTER JOIN tags AS tags_join ON taggings_join.tag_id = tags_join.id
-          WHERE (
-            bookmarks.url LIKE ?
-            OR (
-              bookmarks.url LIKE ?
-              AND bookmarks.id = taggings.bookmark_id
-              AND taggings.tag_id = tags.id
-              AND tags.id = tags_join.id
-            )
-          ) OR (
-            tags_join.name LIKE ?
-            AND tags_join.id = taggings_join.tag_id
-            AND taggings_join.bookmark_id = bookmarks.id
-            AND bookmarks.id = taggings.bookmark_id
-            AND taggings.tag_id = tags.id
-          )
+            LEFT OUTER JOIN taggings ON taggings.bookmark_id = bookmarks.id
+            LEFT OUTER JOIN tags ON tags.id = taggings.tag_id
+          WHERE
+            MATCH(bookmarks.url, tags.name) AGAINST ("?" IN BOOLEAN MODE)
           GROUP BY bookmarks.id
-          ORDER BY ' + order_by + ' ' + order_direction,
-                       "%#{search}%", "%#{search}%", "%#{search}%"], :page => page, :per_page => per_page
+          ORDER BY ' + order_by + ' ' +  order_direction, "#{search}", "#{search}"],
+        :page => page, :per_page => per_page
     end
-    # Better would be:
-    # 1. case insensitive find
-    # 2. case sensitive write find result or new tag
-    # 3. same for dashes (Open-Source vs opensource)
   end
 
   private
@@ -91,7 +70,9 @@ class Bookmark < ActiveRecord::Base
       if @tag_names = @tag_names.gsub(/^[\s|,]*/, '').gsub(/[\s|,]*$/, '').gsub(/(\s,|,\s)+/  , ',')
         # Remove whitespace+comma.. . ^ before ...         ^ after ...          ^ inbetween.
         # TODO: Max 100 Tags
+        # TODO: case insensitive "find", case sensitive "overwrite"
         self.tags = @tag_names.split(/,+/).collect do |name|
+          name = name.gsub(/"/, "\"")
           unless tag = Tag.find_by_name(name.strip.downcase)
             if tag = Tag.create(:name => name.strip)
               self.touch # Bookmark.updated_at
@@ -103,3 +84,38 @@ class Bookmark < ActiveRecord::Base
     end
 
 end
+
+# search = search.gsub(/"/, '\"').gsub(/\?/, '') # NO SQL Injects
+# in_search = 'IN ("' + search.gsub(/(\s)+/, '", "') + '")'
+# or_search = '= ("' + search.gsub(/(\s)+/, '" OR "') + '")'
+# like_or_search = 'LIKE "%' + search.gsub(/(\s)+/, '%" OR "%') + '%"'
+# like_xor_search = 'LIKE "%' + search.gsub(/(\s)+/, '%" XOR "%') + '%"'
+# like_and_search = 'LIKE "%' + search.gsub(/(\s)+/, '%" AND "%') + '%"'
+# bookmarks_search = '(bookmarks.url LIKE "%' +
+#   search.gsub(/(\s)+/, '%" OR bookmarks.url LIKE "%') + '%")'
+# tags_join_search = '(tags_join.name LIKE "%' +
+#   search.gsub(/(\s)+/, '%" OR tags_join.name LIKE "%') + '%")'
+# paginate_by_sql ['
+#     SELECT bookmarks.id, bookmarks.url, bookmarks.updated_at, tags.name
+#     FROM bookmarks
+#     LEFT OUTER JOIN taggings ON taggings.bookmark_id = bookmarks.id
+#     LEFT OUTER JOIN tags ON tags.id = taggings.tag_id
+#     LEFT OUTER JOIN taggings AS taggings_join ON bookmarks.id = taggings_join.bookmark_id
+#     LEFT OUTER JOIN tags AS tags_join ON taggings_join.tag_id = tags_join.id
+#     WHERE (
+#         ' + bookmarks_search + '
+#         AND bookmarks.id = taggings.bookmark_id
+#         AND taggings.tag_id = tags.id
+#         AND tags.id = tags_join.id
+#     ) OR (
+#       tags_join.name ' + or_search + '
+#       AND tags_join.id = taggings_join.tag_id
+#       AND taggings_join.bookmark_id = bookmarks.id
+#       AND bookmarks.id = taggings.bookmark_id
+#       AND taggings.tag_id = tags.id
+#     )
+#     GROUP BY bookmarks.id
+#     ORDER BY ?' + order_direction,
+#   "#{order_by}"], :page => page, :per_page => per_page
+#   # "#{search}%", "%#{search}%", "%#{search}%"], :page => page, :per_page => per_page
+

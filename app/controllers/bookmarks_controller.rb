@@ -8,9 +8,7 @@ class BookmarksController < ApplicationController
   # GET /bookmarks
   # GET /bookmarks.xml
   def index
-    params[:per_page] = per_page
-    params[:search] = params[:search].to_s.strip # Remove wrapping whitespaces
-    @bookmarks = Bookmark.search(params[:search], params[:page], sort_column, sort_direction, per_page)
+    @bookmarks = Bookmark.search(search_string, params[:page] , sort_column, sort_direction, per_page)
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @bookmarks }
@@ -112,11 +110,23 @@ class BookmarksController < ApplicationController
     def sort_column
       # Does not work with tag_names
       # Bookmark.column_names.include?(params[:sort_by]) ? params[:sort_by] : 'updated_at'
-      %w[url updated_at].include?(params[:sort_by]) ? params[:sort_by] : 'updated_at'
+      unless search_string.empty?
+        %w[relevance url updated_at].include?(params[:sort_by]) ? params[:sort_by] : 'relevance'
+      else
+        %w[url updated_at].include?(params[:sort_by]) ? params[:sort_by] : 'updated_at'
+      end
     end
 
     def sort_direction
-      %w[asc desc].include?(params[:sort_direction]) ? params[:sort_direction] : 'desc'
+      if sort_column == 'relevance' and search_string.empty?
+        'desc'
+      else
+        %w[asc desc].include?(params[:sort_direction]) ? params[:sort_direction] : 'desc'
+      end
+    end
+    
+    def search_string
+      params[:search] = params[:search].to_s.gsub(/(\s)+/, ' ').strip # Remove whitespaces
     end
     
     def per_page
