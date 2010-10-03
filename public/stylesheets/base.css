@@ -36,7 +36,7 @@ input[type="text"] {
 	padding: .3em 0;
 	font-size: 130%;
 	letter-spacing: .1em;
-	font-family: 'Lucida Console', 'Andale Mono',  'Consolas', 'Monaco', monospace;
+	font-family: 'Monaco', 'Consolas', 'Lucida Console', 'Profont', 'Andale Mono', monospace;
 	font-size: 11pt;
 	line-height: 100%;
 }
@@ -89,26 +89,76 @@ textarea {
 	text-shadow: none;
 	margin-bottom: .6em;
 }
-form :not(.search) input,
+
+form :not(.search) input[type="submit"] {
+	text-shadow: #ffc 0 1px 0px;
+	background: #f6f6f6;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.43, rgb(230,230,230)),
+	    color-stop(0.71, rgb(255,255,255)),
+	    color-stop(0.86, rgb(245,245,245))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(230,230,230) 43%,
+	    rgb(255,255,255) 71%,
+	    rgb(245,245,245) 86%
+	);
+	color: #022;
+	cursor: pointer;
+}
+form :not(.search) input[type="submit"]:hover {
+	background: #eaeaea;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.43, rgb(214,214,214)),
+	    color-stop(0.71, rgb(245,245,245)),
+	    color-stop(0.83, rgb(240,240,240))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(214,214,214) 43%,
+	    rgb(245,245,245) 71%,
+	    rgb(240,240,240) 83%
+	);
+	color: black;
+	cursor: pointer;
+}
+form :not(.search) input[type="submit"]:hover {
+	
+}
+
+.new_bookmark input,
+.edit_bookmark input,
 textarea {
 	box-shadow: 0px 1px 1px #ddd;
 	-webkit-box-shadow: 0px 1px 1px #ddd;
 	-moz-box-shadow: 0px 1px 1px #ddd;
 	vertical-align: top;
+	width: 98%;
+}
+textarea {
+	height: 18em;
+	width: 96%;
+	padding: 1%;
 }
 input[type="submit"] {
 	clear: both;
 }
 form input[type="submit"] {
-	margin-left: 2.75em;
 	padding: .2em;
 	font-size: 130%;
 }
 label {
-	float: left;
+	display: block;
 	width: 3em;
-	font-size: 120%;
-	line-height: 2em;
+	margin-bottom: .5em;
+	font-size: 130%;
 }
 header form,
 header input {
@@ -314,7 +364,7 @@ header input {
 	border: .1em solid transparent;
 	padding-right: .3em;
 	padding-left: .2em;
-	font-family: 'Monaco', 'Consolas', 'Profont', 'Andale Mono', monospace;
+	font-family: 'Monaco', 'Consolas', 'Lucida Console', 'Profont', 'Andale Mono', monospace;
 	font-weight: normal;
 	max-width: 23em;
 	text-shadow: #ffc 0 1px 0px;
@@ -425,4 +475,19 @@ header input {
 .bookmark .actions * {
 	display: inline;
 	margin: 0;
+}
+.no_results {
+	padding: 1em;
+	font-size: 120%;
+}
+.no_results * {
+	line-height: 150%;
+}
+.no_results ul {
+	list-style: square;
+	padding-left: 1.45em;
+}
+.no_results h1 {
+	padding-top: .6em;
+	padding-bottom: .3em;
 }

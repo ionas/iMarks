@@ -43,6 +43,7 @@ class Bookmark < ActiveRecord::Base
   # Xapian (like Lucene): http://blog.evanweaver.com/articles/2008/05/26/xapian-search-plugin/
   # http://squeejee.com/blog/2008/07/23/simple-ruby-on-rails-full-text-search-using-xapian/
   # Acts_As_Indexed: http://douglasfshearer.com/blog/rails-plugin-acts_as_indexed
+  # Alternative SELECT * FROM bookmarks WHERE bookmarks.url REGEXP '^.*mac.*.com$'; does indeed work
   def self.search(search, page, order_by, order_direction, per_page)
     if search == '' or search == nil # If its empty, we can use a simple find: LIKE "%%" not good.
       paginate :per_page => per_page, :page => page,
@@ -50,16 +51,26 @@ class Bookmark < ActiveRecord::Base
         :include => [:taggings, :tags]
     else
       # http://www.databasejournal.com/sqletc/article.php/1578331/Using-Fulltext-Indexes-in-MySQL---Part-1.htm
+      # Do not forget: ALTER TABLE bookmarks ADD FULLTEXT (url); ALTER TABLE tags ADD FULLTEXT (name);
+      # Alternative: http://github.com/dougal/acts_as_indexed
+      
+      sql_search = search.gsub(/"/, '\"').gsub(/\?/, '') # NO SQL Injects
+      or_search = '= ("' + sql_search.gsub(/(\s)+/, '" OR "') + '")'
+      like_and_search_urls = 'LIKE "%' + sql_search.gsub(/(\s)+/, '%" AND bookmarks.url LIKE "%') + '%"'
+      like_or_search_tags = 'LIKE "%' + sql_search.gsub(/(\s)+/, '%" OR tags.name LIKE "%') + '%"'
+      
       paginate_by_sql ['
           SELECT bookmarks.id, bookmarks.url, bookmarks.updated_at, tags.name,
-            MATCH(bookmarks.url, tags.name) AGAINST ("?" IN BOOLEAN MODE) AS relevance
+            MATCH (bookmarks.url, tags.name) AGAINST (? IN BOOLEAN MODE) AS relevance
           FROM bookmarks
             LEFT OUTER JOIN taggings ON taggings.bookmark_id = bookmarks.id
             LEFT OUTER JOIN tags ON tags.id = taggings.tag_id
           WHERE
-            MATCH(bookmarks.url, tags.name) AGAINST ("?" IN BOOLEAN MODE)
+            (bookmarks.url ' + like_and_search_urls + ')
+            OR
+            (tags.name ' + like_or_search_tags + ')
           GROUP BY bookmarks.id
-          ORDER BY ' + order_by + ' ' +  order_direction, "#{search}", "#{search}"],
+          ORDER BY ' + order_by + ' ' +  order_direction, "#{search}"],
         :page => page, :per_page => per_page
     end
   end

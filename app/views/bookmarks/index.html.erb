@@ -29,14 +29,16 @@
 		<%= render @bookmarks %>
 	</ul>
 	<%- else -%>
-	<p>Your search - <strong><%= params[:search] %></strong> - did not match any links or taggings.</p>
-	<h3>Suggestions:</h3>
-	<ul>
-		<li>Make sure all words are spelled correctly.</li>
-		<li>Try different keywords.</li>
-		<li>Try more general keywords.</li>
-		<li>Try fewer keywords.</li>
-	</ul>
+	<div class="no_results">
+		<p>Your search &mdash; <strong><%= params[:search] %></strong> &mdash; did not match any links or taggings.</p>
+		<h1>Suggestions:</h1>
+		<ul>
+			<li>Make sure all words are spelled correctly.</li>
+			<li>Try different keywords.</li>
+			<li>Try more general keywords.</li>
+			<li>Try fewer keywords.</li>
+		</ul>
+	</div>
 	<%- end -%>
 	<br>
 </section>
