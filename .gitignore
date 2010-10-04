@@ -4,3 +4,4 @@ log/*.log
 tmp/**/*
 
 .DS_Store
+# To remove: find . -name '*.DS_Store' -type f -delete
