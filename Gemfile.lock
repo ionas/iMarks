@@ -36,6 +36,8 @@ GEM
       abstract (>= 1.0.0)
     hirb (0.3.4)
     i18n (0.4.1)
+    jquery-rails (0.2.1)
+      rails (~> 3.0.0)
     linecache (0.43)
     mail (2.2.6.1)
       activesupport (>= 2.3.6)
@@ -57,6 +59,7 @@ GEM
       activesupport (= 3.0.0)
       bundler (~> 1.0.0)
       railties (= 3.0.0)
+    rails3-jquery-autocomplete (0.3.5)
     railties (3.0.0)
       actionpack (= 3.0.0)
       activesupport (= 3.0.0)
@@ -79,7 +82,9 @@ PLATFORMS
 
 DEPENDENCIES
   hirb
+  jquery-rails
   mysql2
   rails (= 3.0.0)
+  rails3-jquery-autocomplete
   ruby-debug
   will_paginate (~> 3.0.pre2)

@@ -2,7 +2,7 @@
 	<h1 class="protocol"><%= url_to_link bookmark.url, bookmark.updated_at.strftime("%Y-%m-%d %H:%M") %></h1>
 	<ul class="actions">
 		<li><%= link_to raw('&#x270e;'), edit_bookmark_path(bookmark), :title => 'Edit' %></li>
-		<li><%= button_to 'X', bookmark, :confirm => 'Are you sure?', :method => :delete, :title => 'Remove' %></li>
+		<li><%= button_to 'X', bookmark, :method => :delete, :remote => true, :confirm => 'Are you sure?', :title => 'Remove' %></li>
 	</ul>
 	<%- unless bookmark.tags.empty? -%>
 	<!--<h2>Tags</h2>-->

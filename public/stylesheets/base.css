@@ -19,15 +19,11 @@ a:hover {
 	color: #09d;
 }
 
-/* Debug */
-html {
-	/* background: #aaa; */ /*debug*/
-}
-body {
-	/* width: 40em;
-	height: 40em; */
+body,
+header,
+.ajax_spinner {
+	width: 40em;
 	overflow: hidden;
-	background: white; /*debug*/
 }
 
 /* Form */
@@ -45,11 +41,24 @@ input[type="text"] {
 	text-indent: .3em;
 }
 /* Layout */
-header {
+header,
+.ajax_spinner {
 	height: 6em;
 	position: relative;
-	
 	text-shadow: white 0 1px 0px;
+	z-index: 50;
+}
+.ajax_spinner {
+	background: white;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	text-align: center;
+	opacity: .5;
+}
+.ajax_spinner img {
+	padding-top: 1em;
 }
 .results {
 	clear: both;

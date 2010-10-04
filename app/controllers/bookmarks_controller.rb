@@ -8,10 +8,13 @@ class BookmarksController < ApplicationController
   # GET /bookmarks
   # GET /bookmarks.xml
   def index
+    # sleep 3
     @bookmarks = Bookmark.search(search_string, params[:page] , sort_column, sort_direction, per_page)
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @bookmarks }
+      format.js
+=begin
       format.js {
         render :update do |page|
           # 'page.replace' will replace full "results" block...works for this example
@@ -19,6 +22,7 @@ class BookmarksController < ApplicationController
           page.replace_html 'bookmarks', :partial => 'bookmark'
         end
       }
+=end
     end
 
   end
