@@ -1,2 +1,6 @@
 == Help
-* Chrome -> Extensions -> Developer Mode[+] -> Load unpacked extension -> chose this directory
+* Chrome ->
+* Extensions ->
+* Developer Mode[+] ->
+* Load unpacked extension
+* Choose "imarks_chrome"
