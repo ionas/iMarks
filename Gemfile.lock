@@ -28,6 +28,7 @@ GEM
       activemodel (= 3.0.0)
       activesupport (= 3.0.0)
     activesupport (3.0.0)
+    acts_as_indexed (0.6.6)
     arel (1.0.1)
       activesupport (~> 3.0.0)
     builder (2.1.2)
@@ -59,7 +60,6 @@ GEM
       activesupport (= 3.0.0)
       bundler (~> 1.0.0)
       railties (= 3.0.0)
-    rails3-jquery-autocomplete (0.3.5)
     railties (3.0.0)
       actionpack (= 3.0.0)
       activesupport (= 3.0.0)
@@ -81,10 +81,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_indexed
   hirb
   jquery-rails
   mysql2
   rails (= 3.0.0)
-  rails3-jquery-autocomplete
   ruby-debug
   will_paginate (~> 3.0.pre2)

@@ -1,6 +1,6 @@
 class BookmarksController < ApplicationController
 
-  before_filter :authenticate # Also Add 1. Data Encryption by Public/Private Key 2. SSL?
+  before_filter :authenticate
 
   # Thanks to: http://railscasts.com/episodes/228-sortable-table-columns
   helper_method :sort_column, :sort_direction
@@ -8,21 +8,12 @@ class BookmarksController < ApplicationController
   # GET /bookmarks
   # GET /bookmarks.xml
   def index
-    sleep 2
-    @bookmarks = Bookmark.search(search_string, params[:page] , sort_column, sort_direction, per_page)
+    # sleep 1
+    @bookmarks = Bookmark.search(search_string, params[:page], sort_column, sort_direction, per_page)
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @bookmarks }
       format.js
-=begin
-      format.js {
-        render :update do |page|
-          # 'page.replace' will replace full "results" block...works for this example
-          # 'page.replace_html' will replace "results" inner html...useful elsewhere
-          page.replace_html 'bookmarks', :partial => 'bookmark'
-        end
-      }
-=end
     end
 
   end
@@ -102,31 +93,26 @@ class BookmarksController < ApplicationController
   protected
 
     # Thanks to: http://railscasts.com/episodes/82-http-basic-authentication
+    # TODO: Try out Devise!
     def authenticate
       return true # disabled auth
       authenticate_or_request_with_http_basic do |username, password|
-        username == 'joe' && password = 'put'
+        username == 'joe' && password == 'put'
       end
     end
 
   private
   
     def sort_column
-      # Does not work with tag_names
-      # Bookmark.column_names.include?(params[:sort_by]) ? params[:sort_by] : 'updated_at'
-      unless search_string.empty?
-        %w[relevance url updated_at].include?(params[:sort_by]) ? params[:sort_by] : 'relevance'
-      else
+      if params[:search].blank?
         %w[url updated_at].include?(params[:sort_by]) ? params[:sort_by] : 'updated_at'
+      else
+        %w[url updated_at].include?(params[:sort_by]) ? params[:sort_by] : nil  
       end
     end
 
     def sort_direction
-      if sort_column == 'relevance' and search_string.empty?
-        'desc'
-      else
-        %w[asc desc].include?(params[:sort_direction]) ? params[:sort_direction] : 'desc'
-      end
+      %w[asc desc].include?(params[:sort_direction]) ? params[:sort_direction] : 'desc'
     end
     
     def search_string
@@ -134,7 +120,7 @@ class BookmarksController < ApplicationController
     end
     
     def per_page
-      if params[:per_page] == nil
+      if params[:per_page].blank?
         params[:per_page] = Bookmark.per_page
       end
       params[:per_page] = params[:per_page].to_i

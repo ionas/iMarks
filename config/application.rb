@@ -40,5 +40,11 @@ module Imark
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
     
+    ActsAsIndexed.configure do |config|
+      config.index_file = [RAILS_ROOT, 'tmp/acts_as_indexed']
+      config.index_file_depth = 3
+      config.min_word_size = 2
+    end
+        
   end
 end

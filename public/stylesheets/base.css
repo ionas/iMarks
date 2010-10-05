@@ -496,7 +496,16 @@ header input {
 	list-style: square;
 	padding-left: 1.45em;
 }
-.no_results h1 {
+.no_results h1,
+.no_results h2 {
 	padding-top: .6em;
 	padding-bottom: .3em;
+}
+dt {
+	font-weight: bold;
+}
+dd {
+	padding-left: .7em;
+	padding-bottom: .7em;
+	text-align: justify;
 }

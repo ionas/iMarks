@@ -10,9 +10,6 @@
 	</nav>
 	<nav class="sorting">
 		<p>
-			<% unless params[:search].empty? %>
-			<%=  sortable 'relevance', :label => 'R' %>
-			<% end %>
 			<%= sortable 'url', :label => 'U' %>
 			<%= sortable 'updated_at', :label => 'D' %>
 			<%= select_tag "per_page", options_for_select(%w{1 5 10 20 50 100}, :selected => params[:per_page], :id => 'per_page') %>
@@ -35,7 +32,25 @@
 			<li>Try different keywords.</li>
 			<li>Try more general keywords.</li>
 			<li>Try fewer keywords.</li>
+			<li>Take a look at the syntax below.</li>
 		</ul>
+		<h2>The following search operators are supported:</h2>
+		<dl>
+			<dt>OR</dt>
+			<dd>This is the default option. ‘cat dog’ will find records matching both 'cat' AND 'dog'.</dd>
+			<dt>NOT</dt>
+			<dd>'cat -dog' will find records matching 'cat' AND NOT 'dog'</dd>
+			<dt>INCLUDE</dt>
+			<dd>'cat +me' will find records matching 'cat' and 'me', even if 'me' is smaller than the +min_word_size+</dd>
+			<dt>&quot;whole phrase&quot;</dt>
+			<dd>Quoted terms are matched as phrases. '"cat dog"' will find records matching the whole phrase. Quoted terms can be preceded by the NOT operator; 'cat -"big dog"' etc. Quoted terms can include words shorter than the +min_word_size+.</dd>
+			<dt>^</dt>
+			<dd>Terms that begin with ^ will match records that contain a word starting with the term. '^cat' will find matches containing 'cat', 'catapult', 'caterpillar' etc.</dd>
+			<dt>^"quoted phrase"</dt>
+			<dd>A quoted term that begins with ^ matches any phrase that begin with this phrase. '^"cat d"' will find records matching the whole phrases "cat dog" and "cat dinner". This type of search is useful for autocomplete inputs.</dd>
+			<dt>*</dt>
+			<dd>Wildcard that matches one or more characters.</dd>
+		</dl>
 	</div>
 	<% end %>
 	<br>
