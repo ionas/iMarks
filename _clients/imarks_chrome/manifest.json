@@ -1,0 +1,20 @@
+{
+	"name": "iMarks Client (Alpha)",
+	"version": "0.5",
+	"description": "Bookmarks in your own cloud.",
+	
+	"icons": {	"16": "icon_16.png",
+	            "32": "icon_32.png",
+	            "48": "icon_48.png",
+	            "128": "icon_48.png" },
+
+	"browser_action": {
+		"default_title": "",
+		"default_icon": "icon_19.png",
+		"popup": "popup.html"
+	},
+	
+	"permissions": [
+	]
+	
+}

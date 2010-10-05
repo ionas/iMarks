@@ -4,14 +4,26 @@ $(function() {
 	
 	// Links in new Tabs or Windows
 	$('.bookmark h1 a').attr('target', 'blank');
-
-	// jquery.hotkey: CTRL+S
-	function saveBookmark(evt){
-		$('#bookmark_submit').click()
-		return false;
-	}
-	$(document).bind('keydown', 'ctrl+s', saveBookmark);
-	$(document).bind('keydown', 'alt+s', saveBookmark);
-	$(document).bind('keydown', 'meta+s', saveBookmark);
+	
+	/*
+	// Buggy
+	// Easy large links - clicky
+	$('.bookmark').click(function() {
+		window.open($(this).children('.the_link').children('a').attr('href'));
+	});
+	// Easy large links - mouse hover indicator
+	$('.bookmark').hover(function() {
+		$(this).css('cursor', 'pointer');
+	});
+	*/
+	// Easy large links - background hover effect
+	$('.bookmark').hover(
+		function() {
+			$(this).addClass('bookmark_hover');
+		},
+		function() {
+			$(this).removeClass('bookmark_hover');
+		}
+	);
 	
 })

@@ -1,0 +1,16 @@
+== Alpha TODO
+=== Server
+* Auth (Devise?)
+* Add/Edit form styles
+* Hotkeys (arrows for the list, CMD/CTRL/META+S for saving)
+=== TODO Client
+* Options: Set server IP
+* Options: Set hotkey for saving
+== Beta TODO 
+=== Server
+* Large clickable backgrounds
+* AJAX navigation
+* Presistant search result on next open
+=== Client
+* Presistant search result on next open + cookie storage (on next open of browser)
+* Icon overhaul

@@ -1,0 +1,16 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	height: auto;
+	width: auto;
+}
+iframe {
+	width: 100%;
+	height: inherit;
+}
+body {
+	width: 400px; /* 400px + scrollbar */
+	height: 400px;
+	overflow-x: hidden;
+}
