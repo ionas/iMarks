@@ -3,30 +3,30 @@
 	<nav class="search">
 		<%= text_field_tag :search, params[:search], :class => 'search_field' %>
 	</nav>
-	<%-  unless @bookmarks.empty? -%>
+	<%  unless @bookmarks.empty? %>
 	<nav class="pagination">
 		<%=	will_paginate @bookmarks, :inner_window => 2, :outer_window => 0,
 			:previous_label => '&#x25c0;', :next_label => '&#x25b6;', :container => false %>
 	</nav>
 	<nav class="sorting">
 		<p>
-			<%- unless params[:search].empty? -%>
+			<% unless params[:search].empty? %>
 			<%=  sortable 'relevance', :label => 'R' %>
-			<%- end -%>
+			<% end %>
 			<%= sortable 'url', :label => 'U' %>
 			<%= sortable 'updated_at', :label => 'D' %>
 			<%= select_tag "per_page", options_for_select(%w{1 5 10 20 50 100}, :selected => params[:per_page], :id => 'per_page') %>
 		</p>
 	</nav>
-	<%-  end -%>
-	<%- end -%>
+	<%  end %>
+	<% end %>
 </header>
 <section class="results">
-	<%- unless @bookmarks.empty? %>
+	<% unless @bookmarks.empty? %>
 	<ul>
 		<%= render @bookmarks %>
 	</ul>
-	<%- else -%>
+	<% else %>
 	<div class="no_results">
 		<p>Your search &mdash; <strong><%= params[:search] %></strong> &mdash; did not match any links or taggings.</p>
 		<h1>Suggestions:</h1>
@@ -37,6 +37,6 @@
 			<li>Try fewer keywords.</li>
 		</ul>
 	</div>
-	<%- end -%>
+	<% end %>
 	<br>
 </section>

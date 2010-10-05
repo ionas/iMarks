@@ -42,7 +42,7 @@ module ApplicationHelper
     if url_label.size > max_size
       url_label = url_label[0..max_size-1] + '&#x2026;'
     end
-    title = info + ': ' + url 
+    title = info + ' &#13;' + url 
     if protocol
       raw '<a href="' + url + '" class="' + protocol + '" title="' + title + '">' +
         url_label.sub(protocols[protocol], '') + '</a>'

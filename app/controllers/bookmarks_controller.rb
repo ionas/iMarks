@@ -8,7 +8,7 @@ class BookmarksController < ApplicationController
   # GET /bookmarks
   # GET /bookmarks.xml
   def index
-    # sleep 3
+    sleep 2
     @bookmarks = Bookmark.search(search_string, params[:page] , sort_column, sort_direction, per_page)
     respond_to do |format|
       format.html # index.html.erb
