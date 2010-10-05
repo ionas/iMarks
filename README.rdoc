@@ -5,7 +5,7 @@
 * Add/Edit form styles
 * Hotkeys (arrows for the list, CMD/CTRL/META+S for saving)
 
-=== TODO Client
+=== Client
 * Options: Set server IP
 * Options: Set hotkey for saving
 
@@ -22,7 +22,9 @@
 * Icon overhaul
 
 
-== 2.0 TODO Client
+== 2.0 TODO
+
+=== Client
 * Add Bookmark Icon which reads <title> and applys this (optional) title to the bookmark. Copy chromes bookmark icon funcionality, add tags field.
 * Autocompletion for tags
 * Option: Disable Chromes Bookmark star
