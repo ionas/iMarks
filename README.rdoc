@@ -23,7 +23,7 @@
 * Autoadd "^" to params search (stands for "starts with")
 * Remove "^" from params-search if its the only char
 
-=== Client
+=== Chrome Client
 * Options: Set server IP
 * Options: Set hotkey for saving
 
@@ -34,15 +34,21 @@
 * AJAX navigation
 * Presistant search result on next open (cookie)
 
-=== Client
+=== Chrome Client
 * Presistant search result on next open + cookie storage (on next open of browser) (localstorage)
 * Icon overhaul
 
 
 == 2.0 TODO
 
-=== Client
+=== Chrome Client
 * Add Bookmark Icon which reads <title> and applys this (optional) title to the bookmark. Copy chromes bookmark icon funcionality, add tags field.
 * Autocompletion for tags
 * Change icon depending on if the server is reachable
 * Option: Disable Chromes internal bookmark star
+
+=== Firefox Client
+* :-)
+
+=== Server
+* Some stylesheet routes for non-extension access (via web browser)
