@@ -6,6 +6,7 @@
 * Setup the server anywhere you want, even at localhost or via DynDNS.
 * Tags supported :).
 * Use the chrome extension to search for bookmarks, update them or add new ones.
+* For search "options" see http://github.com/dougal/acts_as_indexed
 
 == Setup
 * Tested on Ruby 1.8.7. I recommend Ruby Version Manager: http://rvm.beginrescueend.com/ 
