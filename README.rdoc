@@ -47,8 +47,11 @@
 * Change icon depending on if the server is reachable
 * Option: Disable Chromes internal bookmark star
 
-=== Firefox Client
-* :-)
-
 === Server
 * Some stylesheet routes for non-extension access (via web browser)
+
+
+== 3.0 TODO
+
+=== Firefox Client
+* :-)
