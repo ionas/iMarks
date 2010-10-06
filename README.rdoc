@@ -1,14 +1,30 @@
+= iMarks
+* iMarks is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. See: http://creativecommons.org/licenses/by-nc-sa/3.0/
+* Permissions beyond the scope of this license may be available at http://github.com/ionas.
+
+== Manage YOUR bookmarks in YOUR cloud.
+* Setup the rails server anywhere you want, even at localhost or via DynDNS.
+* Use the chrome extension to search for bookmarks, update them or add new ones.
+* Tags supported :).
+
+== Ideas
+* Aftersave: On HTTP/HTTPS read the documents title on a short timeout if user given title is empty
+* Bookmark HABTM Bookmark (for creating bookmark relations / kind of collections)
+* Additional description field
+
+
 == Alpha TODO
 
 === Server
 * Auth (Devise?)
 * Add/Edit form styles
 * Hotkeys (arrows for the list, CMD/CTRL/META+S for saving)
+* Remove "^" from params-search if its the only char
 
 === Client
 * Options: Set server IP
 * Options: Set hotkey for saving
-
+* Autoadd "^" to params search (stands for "starts with")
 
 == Beta TODO 
 
@@ -27,4 +43,5 @@
 === Client
 * Add Bookmark Icon which reads <title> and applys this (optional) title to the bookmark. Copy chromes bookmark icon funcionality, add tags field.
 * Autocompletion for tags
-* Option: Disable Chromes Bookmark star
+* Change icon depending on if the server is reachable
+* Option: Disable Chromes internal bookmark star

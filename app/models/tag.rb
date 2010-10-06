@@ -1,7 +1,7 @@
 class Tag < ActiveRecord::Base
   
   acts_as_indexed  :fields => [:name]
-    
+  
   has_many :taggings
   has_many :bookmarks, :through => :taggings
 
