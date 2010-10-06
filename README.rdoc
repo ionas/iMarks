@@ -4,6 +4,8 @@
 
 == Manage YOUR bookmarks in YOUR cloud.
 * Setup the rails server anywhere you want, even at localhost or via DynDNS.
+* Tested on Ruby 1.8.7. I recommend Ruby Version Manager: http://rvm.beginrescueend.com/ 
+* After download be sure to run "bundle" and then "rails s"
 * Use the chrome extension to search for bookmarks, update them or add new ones.
 * Tags supported :).
 
