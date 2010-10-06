@@ -3,18 +3,27 @@
 * Permissions beyond the scope of this license may be available at http://github.com/ionas.
 
 == Manage YOUR bookmarks in YOUR cloud.
-* Setup the rails server anywhere you want, even at localhost or via DynDNS.
-* Tested on Ruby 1.8.7. I recommend Ruby Version Manager: http://rvm.beginrescueend.com/ 
-* After download be sure to run "bundle" and then "rails s"
-* Use the chrome extension to search for bookmarks, update them or add new ones.
+* Setup the server anywhere you want, even at localhost or via DynDNS.
 * Tags supported :).
+* Use the chrome extension to search for bookmarks, update them or add new ones.
 
-== Ideas
+== Setup
+* Tested on Ruby 1.8.7. I recommend Ruby Version Manager: http://rvm.beginrescueend.com/ 
+* Requires ruby gems, 'bundler': http://gembundler.com/ and rails 3
+* "gem install bundler"
+* "gem install rails"
+* "cd iMarks"
+* "bundle"
+* "rails s"
+* "open http://localhost:3000"
+* For the chrome extension installation notes see "./_clients/README.rdoc"
+
+== Future thoughts
 * Aftersave: On HTTP/HTTPS read the documents title on a short timeout if user given title is empty
 * Bookmark HABTM Bookmark (for creating bookmark relations / kind of collections)
 * Bookmark collections (like tags)
 * Additional description field
-
+* HTTPS
 
 == Alpha TODO
 
