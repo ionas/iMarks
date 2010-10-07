@@ -5,10 +5,10 @@ class Bookmark < ActiveRecord::Base
   # gem acts_as_indexed: http://douglasfshearer.com/blog/rails-plugin-acts_as_indexed
   acts_as_indexed :fields => [:url, :tag_names]
 
-  # Thanks to: http://railscasts.com/episodes/167-more-on-virtual-attributes
   has_many :taggings, :dependent => :destroy
   has_many :tags, :through => :taggings
 
+  # Thanks to: http://railscasts.com/episodes/167-more-on-virtual-attributes
   attr_writer :tag_names
   after_save :assign_tags
   after_update :assign_tags
@@ -41,7 +41,7 @@ class Bookmark < ActiveRecord::Base
       if order_by
         with_query(search).paginate(:page => page, :per_page => per_page,
                                     :order => order_by + ' ' + order_direction)
-      else # by indexer relevance
+      else # order by default acts_as_indexed relevance
         with_query(search).paginate(:page => page, :per_page => per_page)
       end
     end
@@ -51,13 +51,13 @@ class Bookmark < ActiveRecord::Base
   private
 
     def assign_tags
+      # TODO: clear up this evil Regexp mess
       if @tag_names = @tag_names.gsub(/^[\s|,]*/, '').gsub(/[\s|,]*$/, '').gsub(/(\s,|,\s)+/  , ',')
-        # Remove whitespace+comma.. . ^ before ...         ^ after ...          ^ inbetween.
-        # TODO: Max 100 Tags
-        # TODO: case insensitive "find", case sensitive "overwrite"
+      # Remove whitespace+comma.. . ^ before ...         ^ after ...          ^ inbetween.
         self.tags = @tag_names.split(/,+/).collect do |name|
-          name = name.gsub(/"/, "\"")
-          unless tag = Tag.find_by_name(name.strip.downcase)
+          # TODO: clear up this evil Regexp mess
+          name = name.gsub(/\s+/, ' ').strip # Remove white spaces
+          unless tag = Tag.find_by_name(name.strip)
             if tag = Tag.create(:name => name.strip)
               self.touch # Bookmark.updated_at
             end

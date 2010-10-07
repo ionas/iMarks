@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <span style="text-transform: uppercase"><%= f.label 'URL' %></span>
+    <%= f.label 'URL' %>
     <%= f.text_field :url %>
   </div>
   <div class="field">
     <%= f.label 'Tags' %>
-    <%= f.text_area :tag_names, :style => 'text-transform: capitalize' %>
+    <%= f.text_area :tag_names %>
   </div>
   <div class="actions">
     <%= f.submit :title => 'Hit Ctrl+S or Alt+S or Command+S to save this record.'%>
