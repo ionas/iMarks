@@ -68,5 +68,5 @@
 = License
 * iMarks is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. See: http://creativecommons.org/licenses/by-nc-sa/3.0/
 * Permissions beyond the scope of this license may be available at http://github.com/ionas.
-* iMarks License might change to something like GPL3 or like GPL3 with a non military clause (GPL incompatible).
+* iMarks License might change to something like GPL3 or like GPL3 with a non military clause (GPL incompatible), not sure yet.
 * Contains source code which is licensed under multiple open source licenses like MIT/BSD/GPL.
