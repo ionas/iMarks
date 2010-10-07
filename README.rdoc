@@ -93,11 +93,35 @@
 
 == Future thoughts and ideas?!
 * Add optional description field
-* Bookmark referencing bookmarks (like Also see: and Similiar:) (Bookmark HABTM Bookmark)
-* Bookmark categories/collections (Like Tags)
-* Tags: Inverted Search - Tag as the main model, Bookmarks as dependencies
-* Tags: Manage tags - rename tags, merge togather tags
 * AJAX navigation
+* Tags: Manage tags - rename tags, merge togather tags
+* Categorisation
+  * Bookmark referencing bookmarks (like Also see: and Similiar:) (Bookmark HABTM Bookmark)
+  * Bookmark categories/collections (Like Tags)
+  * Tags: Inverted Search - Tag as the main model, Bookmarks as dependencies
+  * Tags as a tree: http://www.example.com /w tags: Example, Dummy and http://127.0.0.1 /w tags: Dummy, Localhost
+  * Advanced search by filtering tag tree - Closed:
+
+	[+] Dummy
+	[+] Example
+	[+] Localhost
+	Advanced search by filtering tag tree - Fully expanded:
+	[-] Dummy
+	     - http://www.example.com
+	     - http://127.0.0.1
+	    [-] Example
+	         - http://www.example.com
+	    [-] Localhost
+	         - http://127.0.0.1
+	[-] Example
+	     - http://www.example.com
+	    [-] Dummy
+	         - http://www.example.com
+	[-] Localhost
+	     - http://127.0.0.1
+	    [-] Dummy
+	        - http://127.0.0.1
+
 
 
 
