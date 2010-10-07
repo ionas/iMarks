@@ -41,7 +41,7 @@ module Imark
     config.filter_parameters += [:password]
     
     ActsAsIndexed.configure do |config|
-      config.index_file = [RAILS_ROOT, 'tmp/acts_as_indexed']
+      config.index_file = [Rails.root.to_s, 'tmp/acts_as_indexed']
       config.index_file_depth = 3
       config.min_word_size = 2
     end
