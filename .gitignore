@@ -1,8 +1,17 @@
 .bundle
 db/*.sqlite3
-db/*.sqlite3-journal
 log/*.log
 tmp/**/*
 
+
+# Customized
+
+db/*.sqlite3-journal # SQLite Journaling
+
+# Mac meta data, to remove: find . -name '*.DS_Store' -type f -delete
 .DS_Store
-# To remove: find . -name '*.DS_Store' -type f -delete
+
+# Autoswap files
+*~.nib
+*.swp
+*~

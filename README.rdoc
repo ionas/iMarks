@@ -4,6 +4,8 @@
 * Use the chrome extension to search for bookmarks, update them or add new ones.
 * For search "options" see http://github.com/dougal/acts_as_indexed
 
+
+
 == Setup
 * Tested on Ruby 1.8.7. I recommend Ruby Version Manager: http://rvm.beginrescueend.com/ 
 * Requires ruby gems, 'bundler': http://gembundler.com/ and rails 3
@@ -18,18 +20,19 @@
 * For now you may edit the iframe's src attribute to match it to the domain/IP you run iMarks server on.
 
 
+
 == Known Bugs
 * "name already taken" for some tag savings (for instance if you supply a (new) tag name twice on bookmark creation)
+
 
 
 == Alpha TODO
 
 === Server
 * Web based Auth (Devise?)
-* Add/Edit form styles
-* Creation redirect to index
 * Delete popup => jQuery fade in
-* Hotkeys (arrows for the list, CMD/CTRL/META+S for saving)
+* Creation redirect to index
+* Add/Edit form styles
 * Autoadd "^" to params search (stands for "starts with")
 * Remove "^" from params-search if its the only char
 
@@ -38,23 +41,31 @@
 * Options: Set hotkey for saving
 
 
-== Beta TODO 
+
+== 1.0 Beta TODO 
 
 === Server
 * Aftersave: On HTTP/HTTPS read the documents title on a short timeout if user given title is empty
 * Presistant search result on next open (cookie)
-* Large clickable backgrounds
 * Test and document Heroku deployment (for other users)
-* Tags: Max 50 per Bookmark 
-* Tags: Case in-sensitive "find", case sensitive create/update (e.g. "overwrite")
 
 === Chrome Client
 * Presistant search result on next open + cookie storage (on next open of browser) (localstorage)
 * Icon overhaul
 
+
+
+== 1.1 TODO
+
+== Server
+* Large clickable backgrounds
+* Hotkeys (arrows for the list, CMD/CTRL/META+S for saving)
+* Test/Add Keyboard Navigation
+
 === Web Client
 * Stylesheets for standard web browsers
 * Stylesheets for iPhone/Android
+
 
 
 == 2.0 TODO
@@ -64,6 +75,8 @@
 * Option: disable Chromes internal bookmark star
 * Autocompletion for tags
 * Change icon depending on if the server is reachable
+* Tags: Max 50 per Bookmark 
+* Tags: Case in-sensitive "find", case sensitive create/update (e.g. "overwrite")
 
 === Server
 * Tags: Plural/singluar in-sensitive "find", update to whatever is specified
@@ -77,12 +90,14 @@
 * :-)
 
 
+
 == Future thoughts and ideas?!
 * AJAX navigation
 * Bookmark referencing bookmarks (like Also see: and Similiar:) (Bookmark HABTM Bookmark)
 * Bookmark categories/collections (Like Tags)
 * Inverted Search: Tag as the main model, Bookmarks as dependencies
 * Additional description field
+
 
 
 = License
