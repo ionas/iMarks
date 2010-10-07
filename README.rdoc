@@ -92,11 +92,12 @@
 
 
 == Future thoughts and ideas?!
-* AJAX navigation
+* Add optional description field
 * Bookmark referencing bookmarks (like Also see: and Similiar:) (Bookmark HABTM Bookmark)
 * Bookmark categories/collections (Like Tags)
-* Inverted Search: Tag as the main model, Bookmarks as dependencies
-* Additional description field
+* Tags: Inverted Search - Tag as the main model, Bookmarks as dependencies
+* Tags: Manage tags - rename tags, merge togather tags
+* AJAX navigation
 
 
 
