@@ -16,18 +16,13 @@
 * For the chrome extension installation notes see "./_clients/README.rdoc"
 * For now you may edit the iframe's src attribute to match it to the domain/IP you run iMarks server on.
 
-== Future thoughts
-* Aftersave: On HTTP/HTTPS read the documents title on a short timeout if user given title is empty
-* Bookmark HABTM Bookmark (for creating bookmark relations / kind of collections)
-* Bookmark collections (like tags)
-* Additional description field
-* HTTPS
 
 == Alpha TODO
 
 === Server
 * Web based Auth (Devise?)
 * Add/Edit form styles
+* Creation redirect to index
 * Hotkeys (arrows for the list, CMD/CTRL/META+S for saving)
 * Autoadd "^" to params search (stands for "starts with")
 * Remove "^" from params-search if its the only char
@@ -36,25 +31,31 @@
 * Options: Set server IP
 * Options: Set hotkey for saving
 
+
 == Beta TODO 
 
 === Server
-* Large clickable backgrounds
-* AJAX navigation
+* Aftersave: On HTTP/HTTPS read the documents title on a short timeout if user given title is empty
 * Presistant search result on next open (cookie)
+* Large clickable backgrounds
+* Test  and document Heroku deployment (for other users)
 
 === Chrome Client
 * Presistant search result on next open + cookie storage (on next open of browser) (localstorage)
 * Icon overhaul
 
+=== Web Client
+* Styles for standard web browsers
+* Styles for iPhone/Android
+
 
 == 2.0 TODO
 
 === Chrome Client
-* Add Bookmark Icon which reads <title> and applys this (optional) title to the bookmark. Copy chromes bookmark icon funcionality, add tags field.
+* Add clickable bookmark icon which reads http's/html <title> and applys this (optional) title to the bookmark. Copy chromes bookmark icon funcionality, add tags field.
+* Option: disable Chromes internal bookmark star
 * Autocompletion for tags
 * Change icon depending on if the server is reachable
-* Option: Disable Chromes internal bookmark star
 
 === Server
 * Some stylesheet routes for non-extension access (via web browser)
@@ -62,8 +63,20 @@
 
 == 3.0 TODO
 
+=== Safari Client
+* :-)
+
 === Firefox Client
 * :-)
+
+
+== Future thoughts and ideas?!
+* AJAX navigation
+* Bookmark referencing bookmarks (like Also see: and Similiar:) (Bookmark HABTM Bookmark)
+* Bookmark categories/collections (Like Tags)
+* Inverted Search: Tag as the main model, Bookmarks as dependencies
+* Additional description field
+
 
 = License
 * iMarks is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. See: http://creativecommons.org/licenses/by-nc-sa/3.0/
