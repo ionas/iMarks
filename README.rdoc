@@ -105,7 +105,9 @@
 	[+] Dummy
 	[+] Example
 	[+] Localhost
-	Advanced search by filtering tag tree - Fully expanded:
+	
+  * Advanced search by filtering tag tree - Fully expanded:
+	
 	[-] Dummy
 	     - http://www.example.com
 	     - http://127.0.0.1
