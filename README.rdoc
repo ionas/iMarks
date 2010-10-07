@@ -1,8 +1,4 @@
-= iMarks
-* iMarks is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. See: http://creativecommons.org/licenses/by-nc-sa/3.0/
-* Permissions beyond the scope of this license may be available at http://github.com/ionas.
-
-== Manage YOUR bookmarks in YOUR cloud.
+= iMarks - Manage YOUR bookmarks in YOUR cloud.
 * Setup the server anywhere you want, even at localhost or via DynDNS.
 * Tags supported :).
 * Use the chrome extension to search for bookmarks, update them or add new ones.
@@ -18,6 +14,7 @@
 * "rails s"
 * "open http://localhost:3000"
 * For the chrome extension installation notes see "./_clients/README.rdoc"
+* For now you may edit the iframe's src attribute to match it to the domain/IP you run iMarks server on.
 
 == Future thoughts
 * Aftersave: On HTTP/HTTPS read the documents title on a short timeout if user given title is empty
@@ -29,7 +26,7 @@
 == Alpha TODO
 
 === Server
-* Auth (Devise?)
+* Web based Auth (Devise?)
 * Add/Edit form styles
 * Hotkeys (arrows for the list, CMD/CTRL/META+S for saving)
 * Autoadd "^" to params search (stands for "starts with")
@@ -67,3 +64,9 @@
 
 === Firefox Client
 * :-)
+
+= License
+* iMarks is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. See: http://creativecommons.org/licenses/by-nc-sa/3.0/
+* Permissions beyond the scope of this license may be available at http://github.com/ionas.
+* iMarks License might change to something like GPL3 or like GPL3 with a non military clause (GPL incompatible).
+* Contains source code which is licensed under multiple open source licenses like MIT/BSD/GPL.
