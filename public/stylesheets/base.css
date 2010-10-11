@@ -440,7 +440,7 @@ header input {
 }
 .bookmark .actions a,
 .bookmark .actions input {
-	margin-left: .2em;
+	margin-left: .35em;
 	width: .9em;
 	text-align: center;
 }

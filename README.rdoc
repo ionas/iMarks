@@ -30,7 +30,6 @@
 
 === Server
 * Web based Auth (Devise?)
-* Delete popup => jQuery fade in
 * Creation redirect to index
 * Add/Edit form styles
 * Autoadd "^" to params search (stands for "starts with")

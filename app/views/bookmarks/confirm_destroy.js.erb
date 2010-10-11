@@ -1,6 +1,9 @@
 $('#dialog_box').remove();
 $('body').prepend('<div id="dialog_box"><%= escape_javascript(render(:file => "bookmarks/confirm_destroy.html.erb")) %></div>');
+$('#dialog_box').fadeOut(0).fadeIn(150);
 $('#cancel_button').click(function() {
-	$('#dialog_box').remove();
+	$('#dialog_box').fadeOut(100, function(){
+		$('#dialog_box').remove();
+	});
 	return false;
 });
