@@ -4,7 +4,7 @@
 	<%= render :partial => @bookmark, :locals => {:o_wrapper => 'div', :o_read_only => true} %>
 	<p>
 		<%= submit_tag "Remove Bookmark" %>
-		or <%= link_to "Cancel", bookmarks_path, :id => 'cancel_button' %>
+		or <%= link_to "Cancel", bookmarks_path, :id => 'close_button' %>
 	</p>
 <% end %>
 </section>
