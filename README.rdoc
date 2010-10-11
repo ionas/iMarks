@@ -29,7 +29,7 @@
 == Alpha TODO
 
 === Server
-* Web based Auth (Devise?)
+* Web based Auth (Devise, CanCan?)
 * Creation redirect to index
 * Add/Edit form styles
 * Autoadd "^" to params search (stands for "starts with")
