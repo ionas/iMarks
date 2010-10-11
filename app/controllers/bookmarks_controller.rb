@@ -15,7 +15,6 @@ class BookmarksController < ApplicationController
       format.xml  { render :xml => @bookmarks }
       format.js
     end
-
   end
 
   # GET /bookmarks/1
@@ -87,6 +86,15 @@ class BookmarksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(bookmarks_url) }
       format.xml  { head :ok }
+    end
+  end
+  
+  def confirm_destroy
+    @bookmark = Bookmark.find(params[:id])    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @bookmark }
+      format.js
     end
   end
 

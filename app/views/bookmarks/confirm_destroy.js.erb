@@ -1,0 +1,6 @@
+$('#dialog_box').remove();
+$('body').prepend('<div id="dialog_box"><%= escape_javascript(render(:file => "bookmarks/confirm_destroy.html.erb")) %></div>');
+$('#cancel_button').click(function() {
+	$('#dialog_box').remove();
+	return false;
+});

@@ -3,7 +3,10 @@
 $(function() {
 	
 	// Links in new Tabs or Windows
-	$('.bookmark h1 a').attr('target', 'blank');
+	$('.bookmark h1 a').click(function() {
+		window.open($(this).attr('href'), '_blank');
+		return false;
+	});
 	
 	/*
 	// Buggy

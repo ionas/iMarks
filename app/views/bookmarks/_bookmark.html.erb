@@ -1,12 +1,13 @@
-<li class="bookmark <%= cycle('odd', 'even') %>">
+<<%= o_wrapper %> class="bookmark <%= cycle('odd', 'even') %>">
 	<h1 class="the_link protocol"><%= url_to_link bookmark.url, 'Saved ' +
 		time_ago_in_words(bookmark.updated_at) + ' ago, on ' +
 		bookmark.updated_at.strftime("%Y-%m-%d %H:%M") %></h1>
+	<% unless o_read_only %>
 	<ul class="actions">
 		<li><%= link_to raw('&#x270e;'), edit_bookmark_path(bookmark), :title => 'Edit' %></li>
-		<li><%= button_to 'X', bookmark, :method => :delete, :remote => true,
-			:confirm => raw("Are you sure?"), :title => 'Remove' %></li>
+		<li><%= link_to raw('X'), confirm_destroy_bookmark_path(bookmark), :remote => true, :title => 'Remove' %></li>
 	</ul>
+	<% end %>
 	<% unless bookmark.tags.empty? %>
 	<ul class="tags">
 		<% bookmark.tags.each do |tag| %>
@@ -19,4 +20,4 @@
 	</ul>
 	<% end %>
 	<br style="clear: both;">
-</li>
+</<%= o_wrapper %>>

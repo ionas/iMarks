@@ -1,0 +1,10 @@
+<section id="confirm_destroy">
+<%= form_for :bookmark, :url => bookmark_path(@bookmark), :html => { :method => :delete } do |f| %>
+	<h2>Are you sure you want to remove this bookmark?</h2>
+	<%= render :partial => @bookmark, :locals => {:o_wrapper => 'div', :o_read_only => true} %>
+	<p>
+		<%= submit_tag "Remove Bookmark" %>
+		or <%= link_to "Cancel", bookmarks_path, :id => 'cancel_button' %>
+	</p>
+<% end %>
+</section>

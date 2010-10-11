@@ -5,7 +5,7 @@
 	height: auto;
 	width: auto;
 }
-iframe {
+iframe, #iframe {
 	width: 100%;
 	height: inherit;
 }

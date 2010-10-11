@@ -22,7 +22,7 @@
 <section class="results">
 	<% unless @bookmarks.empty? %>
 	<ul>
-		<%= render @bookmarks %>
+		<%= render :partial => @bookmarks, :locals => {:o_wrapper => 'li', :o_read_only => false} %>
 	</ul>
 	<% else %>
 	<div class="no_results">
