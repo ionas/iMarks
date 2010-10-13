@@ -600,3 +600,31 @@ a.new_boomark_button {
 	background: #aaa;
 	color: white;
 }
+
+#bookmarks {
+	position: relative;
+}
+#bookmarks #notice {
+	font-size: 130%;
+	color: #551;
+	position: absolute;
+	top: 1em;
+	left: 1em;
+	right: 1em;
+	padding: .5em 0;
+	text-align: center;
+	text-shadow: 0 1px 0px white;
+	border: .2em solid #ddd;
+	border-radius: 3pt;
+	-webkit-border-radius: 3pt;
+	-moz-border-radius: 3pt;
+	background: #f8f8f8;
+	z-index: 600;
+	font-weight: bold;
+	box-shadow: 0px 2px 3px #999;
+	-webkit-box-shadow: 0px 2px 3px #999;
+	-moz-box-shadow: 0px 2px 3px #999;
+}
+#bookmarks #notice:hover {
+	display: none;
+}

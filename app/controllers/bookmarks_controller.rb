@@ -52,7 +52,7 @@ class BookmarksController < ApplicationController
 
     respond_to do |format|
       if @bookmark.save
-        format.html { redirect_to(@bookmark, :notice => 'Bookmark was successfully created.') }
+        format.html { redirect_to(bookmarks_url, :notice => 'Bookmark was successfully created.') }
         format.xml  { render :xml => @bookmark, :status => :created, :location => @bookmark }
       else
         format.html { render :action => "new" }
@@ -68,7 +68,7 @@ class BookmarksController < ApplicationController
 
     respond_to do |format|
       if @bookmark.update_attributes(params[:bookmark])
-        format.html { redirect_to(@bookmark, :notice => 'Bookmark was successfully updated.') }
+        format.html { redirect_to(bookmarks_url, :notice => 'Bookmark was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -84,7 +84,7 @@ class BookmarksController < ApplicationController
     @bookmark.destroy
 
     respond_to do |format|
-      format.html { redirect_to(bookmarks_url) }
+      format.html { redirect_to(bookmarks_url, :notice => 'Bookmark was successfully removed.') }
       format.xml  { head :ok }
     end
   end

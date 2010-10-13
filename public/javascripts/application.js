@@ -29,4 +29,6 @@ $(function() {
 		}
 	);
 	
+	$('#notice').fadeTo(1500, 0.9).fadeTo(500, 0.33).slideUp();
+	
 })
