@@ -604,9 +604,9 @@ a.new_boomark_button {
 #bookmarks {
 	position: relative;
 }
-#bookmarks #notice {
+#notice {
 	font-size: 130%;
-	color: #551;
+	color: green;
 	position: absolute;
 	top: .5em;
 	left: 1em;
@@ -626,6 +626,7 @@ a.new_boomark_button {
 	-moz-box-shadow: 0px 2px 3px #999;
 	opacity: .8;
 }
+#notice:hover,
 #bookmarks header:hover #notice {
 	display: none;
 }

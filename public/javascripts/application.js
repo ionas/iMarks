@@ -7,6 +7,22 @@ $(function() {
 		window.open($(this).attr('href'), '_blank');
 		return false;
 	});
+
+	
+	// Nice Notices
+	$('#notice').css('opacity', 1);
+	$('#notice').fadeTo(1250, 0.85).fadeTo(500, 0.33).slideUp().fadeTo(0, 0);
+	$('#notice').click(function() {
+		$(this).remove();
+	});
+	$('#notice').hover(function() {
+		$('#notice').css('display', 'block');
+	}); 	
+
+	$('#bookmarks header').hover(function() {
+		$('#notice').css('display', 'block');
+	}); 	
+
 	
 	/*
 	// Buggy
@@ -28,8 +44,6 @@ $(function() {
 			$(this).removeClass('bookmark_hover');
 		}
 	);
-	
-	$('#notice').css('opacity', 1);
-	$('#notice').fadeTo(1500, 0.9).fadeTo(500, 0.33).slideUp();
+
 	
 })
