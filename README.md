@@ -3,7 +3,7 @@
 * Setup the server anywhere you want, even at localhost or via DynDNS.
 * Tags supported :).
 * Use the chrome extension to search for bookmarks, update them or add new ones.
-* For search "options" see [http://github.com/dougal/acts_as_indexed](http://github.com/dougal/acts_as_indexed)
+* For search "options" see [http://github.com/dougal/acts_as_indexed](http://github.com/dougal/acts_as_indexed) or enter lots of rubbish into the search field ;)
 
 
 
