@@ -155,7 +155,7 @@
 
 
 
-= License
+# License
 
 * iMarks is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. See: [http://creativecommons.org/licenses/by-nc-sa/3.0/](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 * Permissions beyond the scope of this license may be available at [http://github.com/ionas](http://github.com/ionas).
