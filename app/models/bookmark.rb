@@ -51,10 +51,15 @@ class Bookmark < ActiveRecord::Base
   private
 
     def assign_tags
+      # TODO:
+      # http://railsforum.com/viewtopic.php?pid=32557#p32557
+      # tags = 'foo bar "foo bar" foobar barfoo'
+      # tags.scan(/(\w+)|"(.+?)"/).flatten.compact
       # TODO: clear up this evil Regexp mess
       if @tag_names = @tag_names.gsub(/^[\s|,]*/, '').gsub(/[\s|,]*$/, '').gsub(/(\s,|,\s)+/  , ',')
       # Remove whitespace+comma.. . ^ before ...         ^ after ...          ^ inbetween.
         self.tags = @tag_names.split(/,+/).collect do |name|
+          # TODO: remove duplicates
           # TODO: clear up this evil Regexp mess
           name = name.gsub(/\s+/, ' ').strip # Remove white spaces
           unless tag = Tag.find_by_name(name.strip)
@@ -70,7 +75,7 @@ class Bookmark < ActiveRecord::Base
 end
 
 ###
-### Failed search implementations
+### Failed search implementation 1
 ###
 #
 # search = search.gsub(/"/, '\"').gsub(/\?/, '') # NO SQL Injects
@@ -108,7 +113,7 @@ end
 #   # "#{search}%", "%#{search}%", "%#{search}%"], :page => page, :per_page => per_page
 #
 ###
-### OR
+### Failed search implementation 2
 ###
 #
 # http://www.databasejournal.com/sqletc/article.php/1578331/Using-Fulltext-Indexes-in-MySQL---Part-1.htm
