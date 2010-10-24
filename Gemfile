@@ -39,3 +39,5 @@ gem 'jquery-rails'
 # gem 'rails3-jquery-autocomplete'
 
 gem 'acts_as_indexed'
+
+gem 'devise'

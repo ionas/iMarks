@@ -10,5 +10,10 @@
 	</head>
 	<body>
 		<%= yield %>
+		<% if user_signed_in? %>
+		  You are signed in as <strong><%= current_user.email %></strong> &mdash; <%= link_to "Sign out", destroy_user_session_path %>?
+		<% else %>
+	    <a href="/users/sign_up">Sign up</a> or <%= link_to "sign in", new_user_session_path %>.
+		<% end %>
 	</body>
 </html>

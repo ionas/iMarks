@@ -1,4 +1,6 @@
 Imark::Application.routes.draw do
+  devise_for :users
+
   resources :bookmarks do
     get :confirm_destroy, :on => :member
   end

@@ -45,6 +45,9 @@ module Imark
       config.index_file_depth = 3
       config.min_word_size = 2
     end
-        
+    
+    # Required by Devise
+    config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+    
   end
 end

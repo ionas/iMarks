@@ -1,6 +1,6 @@
 class BookmarksController < ApplicationController
 
-  before_filter :authenticate
+  before_filter :authenticate_user!
 
   # Thanks to: http://railscasts.com/episodes/228-sortable-table-columns
   helper_method :sort_column, :sort_direction
