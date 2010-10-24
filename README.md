@@ -24,8 +24,9 @@
 * "rails s" to start the web server
 * "open [http://localhost:3000/users/sign_up](http://localhost:3000/users/sign_up)" 
 * Edit app/models/users.rb comment :registerable and restart the webserver 
+* "open [http://localhost:3000](http://localhost:3000)" to use the app
 * For the chrome extension installation notes see "./_clients/README.rdoc"
-* For now you may edit the iframe's src attribute to match it to the domain/IP you run iMarks server on.
+* For now you may edit the iframe's src attribute to match it to the domain/IP you run iMarks server on
 
 
 
