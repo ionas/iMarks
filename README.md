@@ -20,8 +20,10 @@
 * "cd iMarks" go to your application's root directory
 * you might need "bundle" to install required gems
 * "rake db:migrate" to create database schema
+* Edit app/models/user.rb. Uncomment :registerable
 * "rails s" to start the web server
-* "open [http://localhost:3000](http://localhost:3000)"
+* "open [http://localhost:3000/users/sign_up](http://localhost:3000/users/sign_up)" 
+* Edit app/models/users.rb comment :registerable and restart the webserver 
 * For the chrome extension installation notes see "./_clients/README.rdoc"
 * For now you may edit the iframe's src attribute to match it to the domain/IP you run iMarks server on.
 
@@ -38,8 +40,6 @@
 
 ### Server
 
-* Web based Auth (Devise, CanCan?)
-* Creation redirect to index
 * Add/Edit form styles
 * Autoadd "^" to params search (stands for "starts with")
 * Remove "^" from params-search if its the only char
