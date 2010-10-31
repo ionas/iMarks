@@ -17,8 +17,8 @@ $(function() {
 	});
 	$('#notice').hover(function() {
 		$('#notice').css('display', 'block');
-	}); 	
-
+	});
+	
 	$('#bookmarks header').hover(function() {
 		$('#notice').css('display', 'block');
 	}); 	

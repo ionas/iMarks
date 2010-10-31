@@ -1,14 +1,13 @@
 class BookmarksController < ApplicationController
 
-  before_filter :authenticate_user!
+  # Thanks to: http://railscasts.com/episodes/210-customizing-devise
+  before_filter :authenticate_user! # Devise
 
   # Thanks to: http://railscasts.com/episodes/228-sortable-table-columns
   helper_method :sort_column, :sort_direction
 
-  # GET /bookmarks
-  # GET /bookmarks.xml
-  def index
-    # sleep 1
+  def index # GET /bookmarks
+    # sleep 1 # For debugging AJAX
     @bookmarks = Bookmark.search(search_string, params[:page], sort_column, sort_direction, per_page)
     respond_to do |format|
       format.html # index.html.erb
@@ -17,9 +16,7 @@ class BookmarksController < ApplicationController
     end
   end
 
-  # GET /bookmarks/1
-  # GET /bookmarks/1.xml
-  def show
+  def show # GET /bookmarks/1
     @bookmark = Bookmark.find(params[:id])
 
     respond_to do |format|
@@ -28,9 +25,7 @@ class BookmarksController < ApplicationController
     end
   end
 
-  # GET /bookmarks/new
-  # GET /bookmarks/new.xml
-  def new
+  def new # GET /bookmarks/new
     @bookmark = Bookmark.new
 
     respond_to do |format|
@@ -39,15 +34,12 @@ class BookmarksController < ApplicationController
     end
   end
 
-  # GET /bookmarks/1/edit
-  def edit
+  def edit # GET /bookmarks/1/edit # NO XML
     @bookmark = Bookmark.find(params[:id])
     @bookmark.tag_names += ', ' unless @bookmark.tag_names.empty?
   end
 
-  # POST /bookmarks
-  # POST /bookmarks.xml
-  def create
+  def create # POST /bookmarks
     @bookmark = Bookmark.new(params[:bookmark])
 
     respond_to do |format|
@@ -61,9 +53,7 @@ class BookmarksController < ApplicationController
     end
   end
 
-  # PUT /bookmarks/1
-  # PUT /bookmarks/1.xml
-  def update
+  def update # PUT /bookmarks/1
     @bookmark = Bookmark.find(params[:id])
 
     respond_to do |format|
@@ -77,9 +67,7 @@ class BookmarksController < ApplicationController
     end
   end
 
-  # DELETE /bookmarks/1
-  # DELETE /bookmarks/1.xml
-  def destroy
+  def destroy # DELETE /bookmarks/1
     @bookmark = Bookmark.find(params[:id])
     @bookmark.destroy
 
@@ -88,45 +76,33 @@ class BookmarksController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
-  def confirm_destroy
-    @bookmark = Bookmark.find(params[:id])    
+
+  def confirm_destroy # GET /bookmarks/1/confirm_destroy # NO XML
+    @bookmark = Bookmark.find(params[:id])
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @bookmark }
-      format.js
+      format.html # confirm_destroy.html.erb
+      format.js # confirm_destroy.html.js
     end
   end
 
-  protected
-
-    # Thanks to: http://railscasts.com/episodes/82-http-basic-authentication
-    # TODO: Try out Devise!
-    def authenticate
-      return true # disabled auth
-      authenticate_or_request_with_http_basic do |username, password|
-        username == 'joe' && password == 'put'
-      end
-    end
-
   private
-  
+
     def sort_column
       if params[:search].blank?
         %w[url updated_at].include?(params[:sort_by]) ? params[:sort_by] : 'updated_at'
       else
-        %w[url updated_at].include?(params[:sort_by]) ? params[:sort_by] : nil  
+        %w[url updated_at].include?(params[:sort_by]) ? params[:sort_by] : nil
       end
     end
 
     def sort_direction
       %w[asc desc].include?(params[:sort_direction]) ? params[:sort_direction] : 'desc'
     end
-    
+
     def search_string
       params[:search] = params[:search].to_s.gsub(/(\s)+/, ' ').strip # Remove whitespaces
     end
-    
+
     def per_page
       if params[:per_page].blank?
         params[:per_page] = Bookmark.per_page
