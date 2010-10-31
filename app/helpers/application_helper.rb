@@ -19,7 +19,6 @@ module ApplicationHelper
       'HS'   => 'https://',
       'F'    => 'ftp://',
       'SF'   => 'sftp://',
-      'FILE' => 'file://',
       'D'    => 'data:',
       'RS'   => 'rsync://',
       'NEWS' => 'nntp://',

@@ -35,6 +35,8 @@ $(function() {
 		$(this).css('cursor', 'pointer');
 	});
 	*/
+	
+	
 	// Easy large links - background hover effect
 	$('.bookmark').hover(
 		function() {
