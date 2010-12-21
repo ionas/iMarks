@@ -1,3 +1,10 @@
+The reason you want something like this hosted here:
+
+[/. Yahoo To Close Delicious](http://tech.slashdot.org/story/10/12/16/2220225/Yahoo-To-Close-Delicious) 
+
+
+Simply: The SaS-cloud is not to be trusted.
+
 # iMarks - Manage YOUR bookmarks in YOUR cloud.
 
 * Setup the server anywhere you want, even at localhost or via DynDNS.
