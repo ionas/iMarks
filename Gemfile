@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.1'
+gem 'rails', '3.0.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -30,10 +30,10 @@ gem 'ruby-debug'
 #   gem 'webrat'
 # end
 
-gem 'hirb' # http://rubygems.org/gems/hirb   http://asciicasts.com/episodes/176-searchlogic
+# gem 'hirb' # http://rubygems.org/gems/hirb   http://asciicasts.com/episodes/176-searchlogic
 # Hirb::View.enable
 
-gem 'will_paginate', '~> 3.0.pre2'
+gem "will_paginate", "~> 3.0.pre2"
 gem 'jquery-rails'
 # http://github.com/crowdint/rails3-jquery-autocomplete
 # gem 'rails3-jquery-autocomplete'
