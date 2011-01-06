@@ -1,9 +1,8 @@
 The reason you want something like this hosted here:
-
 [/. Yahoo To Close Delicious](http://tech.slashdot.org/story/10/12/16/2220225/Yahoo-To-Close-Delicious) 
+Simply: The SaS-cloud is not to be trusted. SaS-clouds are like commerical centralized MMORPGs, you completely depend on a sole company for certain tasks.
+In that matter see: [/. Skype down globally](http://blogs.skype.com/en/2010/12/skype_downtime_today.html) 
 
-
-Simply: The SaS-cloud is not to be trusted.
 
 # iMarks - Manage YOUR bookmarks in YOUR cloud.
 
@@ -28,10 +27,10 @@ Simply: The SaS-cloud is not to be trusted.
 * you might need "bundle" to install required gems
 * "rake db:migrate" to create database schema
 * Edit app/models/user.rb. Uncomment :registerable
-* "rails s" to start the web server
-* "open [http://localhost:3000/users/sign_up](http://localhost:3000/users/sign_up)" 
+* "rails s -p 3010" to start the web server (I prefer passenger, do "gem install passenger" and then "passenger start -p 3010" instead of rails s (for server))
+* "open [http://localhost:3010/users/sign_up](http://localhost:3010/users/sign_up)" 
 * Edit app/models/users.rb comment :registerable and restart the webserver 
-* "open [http://localhost:3000](http://localhost:3000)" to use the app
+* "open [http://localhost:3010](http://localhost:3010)" to use the app
 * For the chrome extension installation notes see "./_clients/README.rdoc"
 * For now you may edit the iframe's src attribute to match it to the domain/IP you run iMarks server on
 
@@ -166,6 +165,6 @@ Simply: The SaS-cloud is not to be trusted.
 # License
 
 * iMarks is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. See: [http://creativecommons.org/licenses/by-nc-sa/3.0/](http://creativecommons.org/licenses/by-nc-sa/3.0/)
-* Permissions beyond the scope of this license may be available at [http://github.com/ionas](http://github.com/ionas).
-* iMarks License might change to something like GPL3 or like GPL3 with a non military clause (GPL incompatible), not sure yet.
+* License permissions beyond the scope of this license may be available at [http://github.com/ionas](http://github.com/ionas).
+* iMarks License might change to something like LGPL3/GPL3 _OR_ like LGPL3/GPL3 with a non military clause (GPL incompatible), not sure yet.
 * Contains source code which is licensed under multiple open source licenses like MIT/BSD/GPL.

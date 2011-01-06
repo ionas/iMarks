@@ -30,7 +30,7 @@ gem 'ruby-debug'
 #   gem 'webrat'
 # end
 
-# gem 'hirb' # http://rubygems.org/gems/hirb   http://asciicasts.com/episodes/176-searchlogic
+# gem 'hirb' # http://rubygems.org/gems/hirb - http://asciicasts.com/episodes/176-searchlogic
 # Hirb::View.enable
 
 gem "will_paginate", "~> 3.0.pre2"
