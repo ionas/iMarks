@@ -1,11 +1,11 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.4'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'sqlite3'
 # gem 'mysql2'
 
 # Use unicorn as the web server
@@ -15,7 +15,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'capistrano'
 
 # To use debugger
-gem 'ruby-debug'
+# gem 'ruby-debug'
 
 # Bundle the extra gems:
 # gem 'bj'
@@ -30,14 +30,17 @@ gem 'ruby-debug'
 #   gem 'webrat'
 # end
 
+
+#####
+# Custom Gems
+
 # gem 'hirb' # http://rubygems.org/gems/hirb - http://asciicasts.com/episodes/176-searchlogic
 # Hirb::View.enable
 
-gem "will_paginate", "~> 3.0.pre2"
-gem 'jquery-rails'
 # http://github.com/crowdint/rails3-jquery-autocomplete
 # gem 'rails3-jquery-autocomplete'
 
+gem 'will_paginate', '~> 3.0.pre2'
+gem 'jquery-rails'
 gem 'acts_as_indexed'
-
 gem 'devise'
