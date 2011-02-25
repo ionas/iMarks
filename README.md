@@ -27,13 +27,14 @@ In that matter see: [/. Skype down globally](http://blogs.skype.com/en/2010/12/s
 * you might need "bundle" to install required gems
 * "rake db:migrate" to create database schema
 * Edit app/models/user.rb. Uncomment :registerable
-* "rails s -p 3010" to start the web server (I prefer passenger, do "gem install passenger" and then "passenger start -p 3010" instead of rails s (for server))
+* "rails s -p 3010 -e production" to start the web server
+  (I prefer passenger, do "gem install passenger" and then "passenger start -p 3010 -e production" instead of rails s (for server))
 * "open [http://localhost:3010/users/sign_up](http://localhost:3010/users/sign_up)" 
 * Edit app/models/users.rb comment :registerable and restart the webserver 
 * "open [http://localhost:3010](http://localhost:3010)" to use the app
 * For the chrome extension installation notes see "./_clients/README.rdoc"
 * For now you may edit the iframe's src attribute to match it to the domain/IP you run iMarks server on
-
+* If you are on a mac, checkout the supplied applescript os x application in ./_launcher
 
 
 ## Known Bugs
