@@ -1,6 +1,6 @@
 The reason you want something like this hosted here:
 [/. Yahoo To Close Delicious](http://tech.slashdot.org/story/10/12/16/2220225/Yahoo-To-Close-Delicious) 
-Simply: The SaS-cloud is not to be trusted. SaS-clouds are like commerical centralized MMORPGs, you completely depend on a sole company for certain tasks.
+Simply: The SaS-cloud is not to be trusted. SaS-clouds are like commercial centralized MMORPGs, you completely depend on a sole company for certain tasks.
 In that matter see: [/. Skype down globally](http://blogs.skype.com/en/2010/12/skype_downtime_today.html) 
 
 
@@ -132,7 +132,7 @@ In that matter see: [/. Skype down globally](http://blogs.skype.com/en/2010/12/s
 * AJAX navigation
 * Tags: Manage tags - rename tags, merge togather tags
 * Categorisation
-  * Bookmark referencing bookmarks (like Also see: and Similiar:) (Bookmark HABTM Bookmark)
+  * Bookmark referencing bookmarks (like Also see: and Similar :) (Bookmark HABTM Bookmark)
   * Bookmark categories/collections (Like Tags)
   * Tags: Inverted Search - Tag as the main model, Bookmarks as dependencies
   * Tags as a tree: http://www.example.com /w tags: Example, Dummy and http://127.0.0.1 /w tags: Dummy, Localhost (also see acts_as_nested_set)
